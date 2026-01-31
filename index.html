@@ -17,6 +17,10 @@
             --success: #00b894;
             --error: #d63031;
             --radius: 12px;
+            --info-bg: #eef6ff;
+            --info-border: #b3d4fc;
+            --warn-bg: #fff8e6;
+            --warn-border: #f0d060;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -131,10 +135,19 @@
             margin-left: 2px;
         }
 
+        .q-hint {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+
         input[type="text"],
         input[type="email"],
         input[type="tel"],
         input[type="url"],
+        input[type="number"],
+        input[type="date"],
         textarea,
         select {
             width: 100%;
@@ -273,6 +286,39 @@
             border: 1px solid var(--border);
         }
 
+        .info-box {
+            background: var(--info-bg);
+            border: 1px solid var(--info-border);
+            border-radius: 8px;
+            padding: 14px 16px;
+            font-size: 0.85rem;
+            color: var(--primary);
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
+        .info-box strong {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .warn-box {
+            background: var(--warn-bg);
+            border: 1px solid var(--warn-border);
+            border-radius: 8px;
+            padding: 14px 16px;
+            font-size: 0.85rem;
+            color: #7a6200;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
+        .section-divider {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 20px 0;
+        }
+
         .nav-buttons {
             display: flex;
             gap: 12px;
@@ -364,6 +410,41 @@
             display: none;
         }
 
+        .consent-section {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-bottom: 16px;
+            border: 1px solid var(--border);
+        }
+
+        .consent-section .consent-text {
+            font-size: 0.82rem;
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 14px;
+        }
+
+        .consent-section .consent-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 8px 0;
+        }
+
+        .consent-section .consent-item input {
+            margin-top: 3px;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+        }
+
+        .consent-section .consent-item label {
+            font-size: 0.85rem;
+            cursor: pointer;
+            line-height: 1.5;
+        }
+
         .footer {
             text-align: center;
             padding: 20px;
@@ -386,70 +467,110 @@
 <div class="header">
     <img src="logo-mgcl.png" alt="Miraloyd Global Consult Limited" class="header-logo">
     <h1>Faith Christian Schools — Website Requirements Questionnaire</h1>
-    <p>Kindly complete this short form so we can design your school website.<br>Takes about 10 minutes.</p>
+    <p>Kindly complete this form so we can design and build your school website to the highest standard.<br>Takes about 15 minutes.</p>
     <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-    <div class="progress-text" id="progressText">Page 1 of 6</div>
+    <div class="progress-text" id="progressText">Page 1 of 8</div>
 </div>
 
 <div class="container">
     <form id="requirementsForm" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="access_key" value="5730ddd0-e399-4776-9311-869e33e809c0">
         <input type="hidden" name="subject" value="FCS Website Requirements Questionnaire — New Submission">
-        <input type="hidden" name="from_name" value="FCS Requirements Form">
+        <input type="hidden" name="from_name" value="FCS Requirements Form (OVER 9000)">
         <input type="hidden" name="redirect" value="">
 
-        <!-- PAGE 1: YOUR SCHOOL -->
+        <!-- ============================================================ -->
+        <!-- PAGE 1: SCHOOL IDENTITY -->
+        <!-- ============================================================ -->
         <div class="page active" data-page="1">
-            <h2 class="page-header">Your School</h2>
-            <p class="page-sub">Let's start with the basics about your school</p>
+            <h2 class="page-header">School Identity</h2>
+            <p class="page-sub">The foundation — who you are as an institution</p>
 
             <div class="question-card">
-                <span class="q-label">We have your school name as <strong>Faith Christian Schools, Karu</strong>. Is this correct, or do you use a different official name? <span class="required">*</span></span>
+                <span class="q-label">Official school name (as registered) <span class="required">*</span></span>
                 <input type="text" name="school_name" placeholder="Faith Christian Schools, Karu" value="Faith Christian Schools, Karu" required>
             </div>
 
             <div class="question-card">
-                <span class="q-label">What school levels do you currently offer? <span class="required">*</span></span>
+                <span class="q-label">School levels currently offered <span class="required">*</span></span>
                 <div class="checkbox-group">
-                    <div class="checkbox-item"><input type="checkbox" name="school_levels" value="Creche" id="lv1"><label for="lv1">Creche</label></div>
-                    <div class="checkbox-item"><input type="checkbox" name="school_levels" value="Nursery" id="lv2"><label for="lv2">Nursery</label></div>
-                    <div class="checkbox-item"><input type="checkbox" name="school_levels" value="Primary (Basic 1-6)" id="lv3"><label for="lv3">Primary (Basic 1-6)</label></div>
-                    <div class="checkbox-item"><input type="checkbox" name="school_levels" value="Junior Secondary (JSS 1-3)" id="lv4"><label for="lv4">Junior Secondary (JSS 1-3)</label></div>
-                    <div class="checkbox-item"><input type="checkbox" name="school_levels" value="Senior Secondary (SSS 1-3)" id="lv5"><label for="lv5">Senior Secondary (SSS 1-3)</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="school_levels" value="Creche / Daycare" id="lv0"><label for="lv0">Creche / Daycare</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="school_levels" value="Pre-Nursery & Nursery" id="lv1"><label for="lv1">Pre-Nursery & Nursery</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="school_levels" value="Primary (Basic 1–6)" id="lv2"><label for="lv2">Primary (Basic 1–6)</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="school_levels" value="Junior Secondary (JSS 1–3)" id="lv3"><label for="lv3">Junior Secondary (JSS 1–3)</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="school_levels" value="Senior Secondary (SSS 1–3)" id="lv4"><label for="lv4">Senior Secondary (SSS 1–3)</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="school_levels" value="Sixth Form / A-Levels / IB" id="lv5"><label for="lv5">Sixth Form / A-Levels / IB</label></div>
                 </div>
             </div>
 
             <div class="question-card">
-                <span class="q-label">In 2-3 sentences, what makes Faith Christian Schools special? What should parents know first? <span class="required">*</span></span>
-                <textarea name="school_usp" placeholder="e.g., Our school combines strong academics with Christian values and a nurturing environment..." required></textarea>
+                <span class="q-label">School motto <span class="required">*</span></span>
+                <input type="text" name="school_motto" placeholder="e.g., Knowledge, Faith, Excellence" required>
+            </div>
+
+            <div class="question-card">
+                <span class="q-label">Year established</span>
+                <input type="number" name="year_established" placeholder="e.g., 2005" min="1900" max="2026">
+            </div>
+
+            <div class="question-card">
+                <span class="q-label">In 2–3 sentences, what makes your school unique? What should parents know first? <span class="required">*</span></span>
+                <textarea name="school_usp" placeholder="e.g., We combine strong academics with Christian values, producing well-rounded graduates who excel in WAEC, NECO, and beyond..." required></textarea>
+            </div>
+
+            <div class="question-card">
+                <span class="q-label">Curriculum & examinations offered</span>
+                <div class="checkbox-group">
+                    <div class="checkbox-item"><input type="checkbox" name="curriculum" value="Nigerian Curriculum (NERDC)" id="cur1"><label for="cur1">Nigerian Curriculum (NERDC)</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="curriculum" value="British Curriculum" id="cur2"><label for="cur2">British Curriculum</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="curriculum" value="WAEC / NECO" id="cur3"><label for="cur3">WAEC / NECO</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="curriculum" value="Cambridge IGCSE / A-Levels" id="cur4"><label for="cur4">Cambridge IGCSE / A-Levels</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="curriculum" value="International Baccalaureate (IB)" id="cur5"><label for="cur5">International Baccalaureate (IB)</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="curriculum" value="Montessori (Early Years)" id="cur6"><label for="cur6">Montessori (Early Years)</label></div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <span class="q-label">Any accreditations or regulatory approvals?</span>
+                <p class="q-hint">e.g., Approved by FCT Education Board, WAEC Centre, NTI-accredited, etc.</p>
+                <textarea name="accreditations" placeholder="List accreditations, approvals, or affiliations..." rows="3"></textarea>
             </div>
         </div>
 
-        <!-- PAGE 2: BRANDING & LOOK -->
+        <!-- ============================================================ -->
+        <!-- PAGE 2: BRANDING & VISUAL IDENTITY -->
+        <!-- ============================================================ -->
         <div class="page" data-page="2">
-            <h2 class="page-header">Branding & Look</h2>
-            <p class="page-sub">How should your website look and feel?</p>
+            <h2 class="page-header">Branding & Visual Identity</h2>
+            <p class="page-sub">Your school's look, feel, and first impression</p>
 
             <div class="question-card">
-                <span class="q-label">Upload your school logo (if available)</span>
+                <span class="q-label">Upload your school logo <span class="required">*</span></span>
+                <p class="q-hint">High-resolution preferred. PNG with transparent background is ideal.</p>
                 <div class="file-upload" onclick="document.getElementById('logoUpload').click()">
-                    <div class="upload-icon">🖼️</div>
-                    <div class="upload-text">Tap to upload logo</div>
-                    <div class="upload-hint">PNG, JPG, or PDF</div>
-                    <input type="file" id="logoUpload" name="school_logo" accept=".png,.jpg,.jpeg,.pdf">
+                    <div class="upload-icon">🏫</div>
+                    <div class="upload-text">Tap to upload school logo</div>
+                    <div class="upload-hint">PNG, JPG, SVG, or PDF — Max 5 MB</div>
+                    <input type="file" id="logoUpload" name="school_logo" accept=".png,.jpg,.jpeg,.svg,.pdf">
                 </div>
                 <div class="file-list" id="logoFileList"></div>
-                <p class="placeholder-hint">If you don't have a logo yet, no worries — we can work with your school colours</p>
+                <p class="placeholder-hint">If you don't have a logo yet, kindly skip — we can design one or work with your school colours.</p>
             </div>
 
             <div class="question-card">
-                <span class="q-label">What are your school's official colours?</span>
-                <input type="text" name="school_colours" placeholder="e.g., Navy blue and gold">
+                <span class="q-label">School crest / emblem (if different from logo)</span>
+                <div class="file-upload" onclick="document.getElementById('crestUpload').click()">
+                    <div class="upload-icon">🛡️</div>
+                    <div class="upload-text">Tap to upload crest or emblem</div>
+                    <div class="upload-hint">PNG, JPG, SVG, or PDF — Max 5 MB</div>
+                    <input type="file" id="crestUpload" name="school_crest" accept=".png,.jpg,.jpeg,.svg,.pdf">
+                </div>
+                <div class="file-list" id="crestFileList"></div>
             </div>
 
             <div class="question-card">
-                <span class="q-label">What is your school motto?</span>
-                <input type="text" name="school_motto" placeholder="e.g., Knowledge, Faith, Excellence">
+                <span class="q-label">Official school colours <span class="required">*</span></span>
+                <input type="text" name="school_colours" placeholder="e.g., Navy blue and gold" required>
             </div>
 
             <div class="question-card">
@@ -459,57 +580,209 @@
                     <div class="radio-item"><input type="radio" name="website_feel" value="Warm & Welcoming" id="feel2"><label for="feel2">Warm & Welcoming</label></div>
                     <div class="radio-item"><input type="radio" name="website_feel" value="Faith-centred & Inspirational" id="feel3"><label for="feel3">Faith-centred & Inspirational</label></div>
                     <div class="radio-item"><input type="radio" name="website_feel" value="Modern & Dynamic" id="feel4"><label for="feel4">Modern & Dynamic</label></div>
+                    <div class="radio-item"><input type="radio" name="website_feel" value="Blend of the above" id="feel5"><label for="feel5">A blend of the above</label></div>
                 </div>
             </div>
 
             <div class="question-card">
-                <span class="q-label">Are there any school websites you admire? Share 1-2 links (optional)</span>
-                <textarea name="admired_websites" placeholder="Paste website links here" rows="3"></textarea>
+                <span class="q-label">Are there any school websites you admire? Share 1–2 links</span>
+                <p class="q-hint">Nigerian or international — this helps us understand your taste.</p>
+                <textarea name="admired_websites" placeholder="e.g., www.greenspringsschool.com, www.coronaschools.com" rows="3"></textarea>
             </div>
         </div>
 
+        <!-- ============================================================ -->
         <!-- PAGE 3: WEBSITE PAGES & FEATURES -->
+        <!-- ============================================================ -->
         <div class="page" data-page="3">
             <h2 class="page-header">Website Pages & Features</h2>
-            <p class="page-sub">What should be on your website?</p>
+            <p class="page-sub">Select the pages and features your website should have</p>
 
             <div class="question-card">
                 <span class="q-label">Which pages would you like on your website? <span class="required">*</span></span>
+                <p class="q-hint">Tick all that apply. We will advise on the best structure.</p>
                 <div class="checkbox-group">
                     <div class="checkbox-item"><input type="checkbox" name="pages" value="Home" id="pg1" checked><label for="pg1">Home</label></div>
-                    <div class="checkbox-item"><input type="checkbox" name="pages" value="About Us (History, Mission, Vision)" id="pg2"><label for="pg2">About Us (History, Mission, Vision)</label></div>
-                    <div class="checkbox-item"><input type="checkbox" name="pages" value="Academics (Curriculum, Programmes)" id="pg3"><label for="pg3">Academics (Curriculum, Programmes)</label></div>
-                    <div class="checkbox-item"><input type="checkbox" name="pages" value="Admissions (How to Apply, Fees)" id="pg4"><label for="pg4">Admissions (How to Apply, Fees)</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="pages" value="About Us (History, Mission, Vision, Leadership)" id="pg2"><label for="pg2">About Us (History, Mission, Vision, Leadership)</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="pages" value="Academics (Curriculum, Programmes per Level)" id="pg3"><label for="pg3">Academics (Curriculum, Programmes per Level)</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="pages" value="Admissions (Requirements, Process, Fees)" id="pg4"><label for="pg4">Admissions (Requirements, Process, Fees)</label></div>
                     <div class="checkbox-item"><input type="checkbox" name="pages" value="Gallery (Photos & Videos)" id="pg5"><label for="pg5">Gallery (Photos & Videos)</label></div>
                     <div class="checkbox-item"><input type="checkbox" name="pages" value="News & Events" id="pg6"><label for="pg6">News & Events</label></div>
-                    <div class="checkbox-item"><input type="checkbox" name="pages" value="Staff Directory" id="pg7"><label for="pg7">Staff Directory</label></div>
-                    <div class="checkbox-item"><input type="checkbox" name="pages" value="Student Life (Clubs, Sports)" id="pg8"><label for="pg8">Student Life (Clubs, Sports)</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="pages" value="Staff Directory / Our Team" id="pg7"><label for="pg7">Staff Directory / Our Team</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="pages" value="Student Life (Clubs, Sports, Activities)" id="pg8"><label for="pg8">Student Life (Clubs, Sports, Activities)</label></div>
                     <div class="checkbox-item"><input type="checkbox" name="pages" value="Chapel / Spiritual Life" id="pg9"><label for="pg9">Chapel / Spiritual Life</label></div>
-                    <div class="checkbox-item"><input type="checkbox" name="pages" value="Contact Us" id="pg10"><label for="pg10">Contact Us</label></div>
-                    <div class="checkbox-item"><input type="checkbox" name="pages" value="Testimonials" id="pg11"><label for="pg11">Testimonials</label></div>
-                    <div class="checkbox-item"><input type="checkbox" name="pages" value="Downloads (Forms, Handbooks)" id="pg12"><label for="pg12">Downloads (Forms, Handbooks)</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="pages" value="Facilities & Campus Tour" id="pg10"><label for="pg10">Facilities & Campus Tour</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="pages" value="Testimonials / Parent Reviews" id="pg11"><label for="pg11">Testimonials / Parent Reviews</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="pages" value="Downloads (Forms, Handbooks, Calendar)" id="pg12"><label for="pg12">Downloads (Forms, Handbooks, Calendar)</label></div>
                     <div class="checkbox-item"><input type="checkbox" name="pages" value="School Calendar" id="pg13"><label for="pg13">School Calendar</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="pages" value="Contact Us" id="pg14"><label for="pg14">Contact Us</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="pages" value="Blog" id="pg15"><label for="pg15">Blog</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="pages" value="Alumni" id="pg16"><label for="pg16">Alumni</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="pages" value="Careers / Work With Us" id="pg17"><label for="pg17">Careers / Work With Us</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="pages" value="Boarding (if applicable)" id="pg18"><label for="pg18">Boarding (if applicable)</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="pages" value="PTA / Parents Portal" id="pg19"><label for="pg19">PTA / Parents Portal</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="pages" value="Scholarships & Financial Aid" id="pg20"><label for="pg20">Scholarships & Financial Aid</label></div>
                 </div>
             </div>
 
             <div class="question-card">
-                <span class="q-label">Would you like a WhatsApp chat button on the website?</span>
-                <div class="radio-group">
-                    <div class="radio-item"><input type="radio" name="whatsapp_button" value="Yes" id="wa1" onchange="toggleConditional('waNumber')"><label for="wa1">Yes</label></div>
-                    <div class="radio-item"><input type="radio" name="whatsapp_button" value="No" id="wa2" onchange="toggleConditional('waNumber')"><label for="wa2">No</label></div>
+                <span class="q-label">Any special features or integrations needed?</span>
+                <div class="checkbox-group">
+                    <div class="checkbox-item"><input type="checkbox" name="features" value="Contact / Inquiry Form" id="ft1"><label for="ft1">Contact / Inquiry Form</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="features" value="Online Admissions Application" id="ft2"><label for="ft2">Online Admissions Application</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="features" value="WhatsApp Chat Button" id="ft3" onchange="toggleConditional('waNumber')"><label for="ft3">WhatsApp Chat Button</label></div>
+                    <div class="conditional-field" id="waNumber">
+                        <label>WhatsApp number:</label>
+                        <input type="tel" name="whatsapp_number" placeholder="+234 803 601 2387">
+                    </div>
+                    <div class="checkbox-item"><input type="checkbox" name="features" value="Fee Payment Gateway" id="ft4"><label for="ft4">Fee Payment Gateway</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="features" value="Parent / Student Portal" id="ft5"><label for="ft5">Parent / Student Portal</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="features" value="Result Checker" id="ft6"><label for="ft6">Result Checker</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="features" value="E-Learning / CBT Integration" id="ft7"><label for="ft7">E-Learning / CBT Integration</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="features" value="Newsletter / Email Signup" id="ft8"><label for="ft8">Newsletter / Email Signup</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="features" value="Live Chat" id="ft9"><label for="ft9">Live Chat</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="features" value="Google Map / Directions" id="ft10"><label for="ft10">Google Map / Directions</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="features" value="Event Calendar" id="ft11"><label for="ft11">Event Calendar</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="features" value="Virtual Campus Tour (360°)" id="ft12"><label for="ft12">Virtual Campus Tour (360°)</label></div>
                 </div>
-                <div class="conditional-field" id="waNumber">
-                    <label>WhatsApp number:</label>
-                    <input type="tel" name="whatsapp_number" placeholder="+234 803 601 2387">
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- PAGE 4: ADMISSIONS & ACADEMICS -->
+        <!-- ============================================================ -->
+        <div class="page" data-page="4">
+            <h2 class="page-header">Admissions & Academics</h2>
+            <p class="page-sub">How parents enrol and what the school offers</p>
+
+            <div class="question-card">
+                <span class="q-label">Briefly describe the admission process <span class="required">*</span></span>
+                <p class="q-hint">Step by step — from inquiry to enrolment.</p>
+                <textarea name="admission_process" placeholder="e.g., 1. Visit the school  2. Collect admission form  3. Write entrance exam  4. Interview  5. Pay fees" required></textarea>
+            </div>
+
+            <div class="question-card">
+                <span class="q-label">Should fee/tuition information appear on the website? <span class="required">*</span></span>
+                <div class="radio-group">
+                    <div class="radio-item"><input type="radio" name="fee_display" value="Yes — show full fee structure" id="fee1" required><label for="fee1">Yes — show full fee structure</label></div>
+                    <div class="radio-item"><input type="radio" name="fee_display" value="Yes — show fee ranges only" id="fee2"><label for="fee2">Yes — show fee ranges only</label></div>
+                    <div class="radio-item"><input type="radio" name="fee_display" value="No — parents should contact the school" id="fee3"><label for="fee3">No — parents should contact the school</label></div>
                 </div>
             </div>
 
             <div class="question-card">
-                <span class="q-label">Should the website have a contact/inquiry form for parents? <span class="required">*</span></span>
-                <div class="radio-group">
-                    <div class="radio-item"><input type="radio" name="contact_form" value="Yes" id="cf1" required><label for="cf1">Yes</label></div>
-                    <div class="radio-item"><input type="radio" name="contact_form" value="No" id="cf2"><label for="cf2">No</label></div>
+                <span class="q-label">Key facilities</span>
+                <p class="q-hint">Select what the school has — these will be featured on the website.</p>
+                <div class="checkbox-group">
+                    <div class="checkbox-item"><input type="checkbox" name="facilities" value="Science Laboratory" id="fac1"><label for="fac1">Science Laboratory</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="facilities" value="Computer / ICT Room" id="fac2"><label for="fac2">Computer / ICT Room</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="facilities" value="Library" id="fac3"><label for="fac3">Library</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="facilities" value="Sports Field / Court" id="fac4"><label for="fac4">Sports Field / Court</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="facilities" value="Chapel / Assembly Hall" id="fac5"><label for="fac5">Chapel / Assembly Hall</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="facilities" value="Art / Music Room" id="fac6"><label for="fac6">Art / Music Room</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="facilities" value="Cafeteria / Tuck Shop" id="fac7"><label for="fac7">Cafeteria / Tuck Shop</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="facilities" value="Sick Bay / School Nurse" id="fac8"><label for="fac8">Sick Bay / School Nurse</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="facilities" value="School Bus / Transport" id="fac9"><label for="fac9">School Bus / Transport</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="facilities" value="Swimming Pool" id="fac10"><label for="fac10">Swimming Pool</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="facilities" value="Boarding House" id="fac11"><label for="fac11">Boarding House</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="facilities" value="CCTV / Security" id="fac12"><label for="fac12">CCTV / Security</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="facilities" value="Generator / Uninterrupted Power" id="fac13"><label for="fac13">Generator / Uninterrupted Power</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="facilities" value="Playground / Recreation Area" id="fac14"><label for="fac14">Playground / Recreation Area</label></div>
                 </div>
+            </div>
+
+            <div class="question-card">
+                <span class="q-label">Notable achievements or awards</span>
+                <textarea name="achievements" placeholder="e.g., Best school in Karu LGA 2024, 100% WAEC pass rate, inter-school quiz winners, etc." rows="3"></textarea>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- PAGE 5: CONTENT, IMAGES & BRAND ASSETS -->
+        <!-- ============================================================ -->
+        <div class="page" data-page="5">
+            <h2 class="page-header">Content, Images & Brand Assets</h2>
+            <p class="page-sub">The materials we need to build your website content</p>
+
+            <div class="info-box">
+                <strong>Why we need these:</strong>
+                High-quality photos, documents, and brand materials enable us to create a professional website that truly represents your school. The more you provide, the better the final result.
+            </div>
+
+            <div class="question-card">
+                <span class="q-label">Upload campus / school photos</span>
+                <p class="q-hint">Buildings, classrooms, facilities, events, students in activity. High-resolution preferred.</p>
+                <div class="file-upload" onclick="document.getElementById('photosUpload').click()">
+                    <div class="upload-icon">📸</div>
+                    <div class="upload-text">Tap to upload school photos</div>
+                    <div class="upload-hint">PNG, JPG — Up to 10 files, max 5 MB each</div>
+                    <input type="file" id="photosUpload" name="school_photos" multiple accept=".png,.jpg,.jpeg">
+                </div>
+                <div class="file-list" id="photosFileList"></div>
+            </div>
+
+            <div class="question-card">
+                <span class="q-label">Upload school documents</span>
+                <p class="q-hint">Prospectus, brochure, school handbook, admission form, letterhead — anything that helps us understand your brand.</p>
+                <div class="file-upload" onclick="document.getElementById('docsUpload').click()">
+                    <div class="upload-icon">📋</div>
+                    <div class="upload-text">Tap to upload documents</div>
+                    <div class="upload-hint">PDF, DOC, DOCX — Up to 5 files, max 5 MB each</div>
+                    <input type="file" id="docsUpload" name="school_documents" multiple accept=".pdf,.doc,.docx">
+                </div>
+                <div class="file-list" id="docsFileList"></div>
+            </div>
+
+            <div class="question-card">
+                <span class="q-label">Do you have a large number of files to share? Paste a Google Drive, Dropbox, or WeTransfer link below</span>
+                <p class="q-hint">This is ideal for sharing many photos, videos, or large files beyond the upload limit above.</p>
+                <input type="url" name="shared_drive_link" placeholder="https://drive.google.com/drive/folders/...">
+            </div>
+
+            <div class="question-card">
+                <span class="q-label">Do you have a school promotional video? <span class="required">*</span></span>
+                <div class="radio-group">
+                    <div class="radio-item"><input type="radio" name="promo_video" value="Yes" id="pv1" required onchange="toggleConditional('videoUrl')"><label for="pv1">Yes</label></div>
+                    <div class="radio-item"><input type="radio" name="promo_video" value="No" id="pv2" onchange="toggleConditional('videoUrl')"><label for="pv2">No</label></div>
+                    <div class="radio-item"><input type="radio" name="promo_video" value="Not yet — but we plan to create one" id="pv3" onchange="toggleConditional('videoUrl')"><label for="pv3">Not yet — but we plan to create one</label></div>
+                </div>
+                <div class="conditional-field" id="videoUrl">
+                    <label>Paste YouTube or video link:</label>
+                    <input type="url" name="video_url" placeholder="https://youtube.com/watch?v=...">
+                </div>
+            </div>
+
+            <div class="question-card">
+                <span class="q-label">Will you provide the written content for each page, or should we draft it? <span class="required">*</span></span>
+                <div class="radio-group">
+                    <div class="radio-item"><input type="radio" name="content_source" value="We will write the content" id="cs1" required><label for="cs1">We will write the content</label></div>
+                    <div class="radio-item"><input type="radio" name="content_source" value="Kindly draft it — we will review" id="cs2"><label for="cs2">Kindly draft it — we will review</label></div>
+                    <div class="radio-item"><input type="radio" name="content_source" value="Mix of both" id="cs3"><label for="cs3">Mix of both</label></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- PAGE 6: SOCIAL MEDIA & CONTACT -->
+        <!-- ============================================================ -->
+        <div class="page" data-page="6">
+            <h2 class="page-header">Social Media & Contact Information</h2>
+            <p class="page-sub">How the world reaches your school</p>
+
+            <div class="question-card">
+                <span class="q-label">School address (as it should appear on the website) <span class="required">*</span></span>
+                <textarea name="school_address" placeholder="Full address including city/LGA and state" rows="3" required>Plot MF 31, ABG Hill, Behind Water Board, Karu</textarea>
+            </div>
+
+            <div class="question-card">
+                <span class="q-label">School phone number(s) <span class="required">*</span></span>
+                <p class="q-hint">Include all contact lines (office, admissions, WhatsApp).</p>
+                <textarea name="school_phone" placeholder="+234 803 601 2387 (Main)&#10;+234 xxx xxx xxxx (Admissions)" rows="3" required>+234 803 601 2387</textarea>
+            </div>
+
+            <div class="question-card">
+                <span class="q-label">School email address <span class="required">*</span></span>
+                <input type="email" name="school_email" placeholder="info@faithchristianschools.net" required>
             </div>
 
             <div class="question-card">
@@ -524,114 +797,87 @@
                     <div class="checkbox-item"><input type="checkbox" name="social_media" value="YouTube" id="sm3" onchange="toggleSocialURL('sm3','ytUrl')"><label for="sm3">YouTube</label></div>
                     <div class="conditional-field" id="ytUrl"><label>YouTube URL:</label><input type="url" name="youtube_url" placeholder="https://youtube.com/..."></div>
 
-                    <div class="checkbox-item"><input type="checkbox" name="social_media" value="Twitter/X" id="sm4" onchange="toggleSocialURL('sm4','twUrl')"><label for="sm4">Twitter / X</label></div>
+                    <div class="checkbox-item"><input type="checkbox" name="social_media" value="Twitter / X" id="sm4" onchange="toggleSocialURL('sm4','twUrl')"><label for="sm4">Twitter / X</label></div>
                     <div class="conditional-field" id="twUrl"><label>Twitter/X URL:</label><input type="url" name="twitter_url" placeholder="https://x.com/..."></div>
 
-                    <div class="checkbox-item"><input type="checkbox" name="social_media" value="None yet" id="sm5"><label for="sm5">None yet</label></div>
-                </div>
-            </div>
+                    <div class="checkbox-item"><input type="checkbox" name="social_media" value="TikTok" id="sm5" onchange="toggleSocialURL('sm5','tkUrl')"><label for="sm5">TikTok</label></div>
+                    <div class="conditional-field" id="tkUrl"><label>TikTok URL:</label><input type="url" name="tiktok_url" placeholder="https://tiktok.com/@..."></div>
 
-            <div class="question-card">
-                <span class="q-label">Do you have a school promotional video?</span>
-                <div class="radio-group">
-                    <div class="radio-item"><input type="radio" name="promo_video" value="Yes" id="pv1" onchange="toggleConditional('videoUrl')"><label for="pv1">Yes</label></div>
-                    <div class="radio-item"><input type="radio" name="promo_video" value="No" id="pv2" onchange="toggleConditional('videoUrl')"><label for="pv2">No</label></div>
-                </div>
-                <div class="conditional-field" id="videoUrl">
-                    <label>Paste YouTube or video link:</label>
-                    <input type="url" name="video_url" placeholder="https://youtube.com/watch?v=...">
+                    <div class="checkbox-item"><input type="checkbox" name="social_media" value="LinkedIn" id="sm6" onchange="toggleSocialURL('sm6','liUrl')"><label for="sm6">LinkedIn</label></div>
+                    <div class="conditional-field" id="liUrl"><label>LinkedIn URL:</label><input type="url" name="linkedin_url" placeholder="https://linkedin.com/school/..."></div>
+
+                    <div class="checkbox-item"><input type="checkbox" name="social_media" value="None yet" id="sm7"><label for="sm7">None yet</label></div>
                 </div>
             </div>
         </div>
 
-        <!-- PAGE 4: ADMISSIONS & ACADEMICS -->
-        <div class="page" data-page="4">
-            <h2 class="page-header">Admissions & Academics</h2>
-            <p class="page-sub">Help us understand your admissions process</p>
+        <!-- ============================================================ -->
+        <!-- PAGE 7: TECHNICAL & BACKEND ACCESS -->
+        <!-- ============================================================ -->
+        <div class="page" data-page="7">
+            <h2 class="page-header">Technical & Backend Access</h2>
+            <p class="page-sub">Domain, hosting, and setup details</p>
 
-            <div class="question-card">
-                <span class="q-label">Briefly describe the admission process. What steps does a parent take to enrol? <span class="required">*</span></span>
-                <textarea name="admission_process" placeholder="e.g., 1. Visit the school  2. Fill admission form  3. Write entrance exam  4. Pay fees" required></textarea>
+            <div class="warn-box">
+                <strong>🔒 Security Notice:</strong>
+                Any login credentials you provide here are handled with strict confidentiality and used solely for the purpose of setting up your school website. We will never share your credentials with third parties. If you prefer, you can share access details directly via a secure channel (WhatsApp, phone call) instead of entering them here.
             </div>
 
             <div class="question-card">
-                <span class="q-label">Should fee/tuition information appear on the website? <span class="required">*</span></span>
+                <span class="q-label">Do you have a domain name (e.g., faithchristianschools.net)? <span class="required">*</span></span>
                 <div class="radio-group">
-                    <div class="radio-item"><input type="radio" name="fee_display" value="Yes - show full fee structure" id="fee1" required><label for="fee1">Yes — show full fee structure</label></div>
-                    <div class="radio-item"><input type="radio" name="fee_display" value="Yes - show fee ranges only" id="fee2"><label for="fee2">Yes — show fee ranges only</label></div>
-                    <div class="radio-item"><input type="radio" name="fee_display" value="No - parents should contact the school" id="fee3"><label for="fee3">No — parents should contact the school</label></div>
+                    <div class="radio-item"><input type="radio" name="domain_status" value="Yes — I own it and have login access" id="dom1" required onchange="showDomainDetails()"><label for="dom1">Yes — I own it and have login access</label></div>
+                    <div class="radio-item"><input type="radio" name="domain_status" value="Yes — but someone else manages it" id="dom2" onchange="showDomainDetails()"><label for="dom2">Yes — but someone else manages it</label></div>
+                    <div class="radio-item"><input type="radio" name="domain_status" value="No — I need one registered" id="dom3" onchange="showDomainDetails()"><label for="dom3">No — I need one registered</label></div>
+                    <div class="radio-item"><input type="radio" name="domain_status" value="Not sure" id="dom4" onchange="showDomainDetails()"><label for="dom4">Not sure</label></div>
+                </div>
+                <div class="conditional-field" id="domainDetails">
+                    <label>Domain name:</label>
+                    <input type="text" name="domain_name" placeholder="e.g., faithchristianschools.net">
+                    <label style="margin-top:10px;">Domain registrar (if known):</label>
+                    <input type="text" name="domain_registrar" placeholder="e.g., GoDaddy, Namecheap, Whogohost, Qservers">
                 </div>
             </div>
 
             <div class="question-card">
-                <span class="q-label">What key facilities does the school have?</span>
-                <div class="checkbox-group">
-                    <div class="checkbox-item"><input type="checkbox" name="facilities" value="Science Lab" id="fac1"><label for="fac1">Science Lab</label></div>
-                    <div class="checkbox-item"><input type="checkbox" name="facilities" value="Computer/ICT Room" id="fac2"><label for="fac2">Computer / ICT Room</label></div>
-                    <div class="checkbox-item"><input type="checkbox" name="facilities" value="Library" id="fac3"><label for="fac3">Library</label></div>
-                    <div class="checkbox-item"><input type="checkbox" name="facilities" value="Sports Field/Court" id="fac4"><label for="fac4">Sports Field / Court</label></div>
-                    <div class="checkbox-item"><input type="checkbox" name="facilities" value="Chapel/Assembly Hall" id="fac5"><label for="fac5">Chapel / Assembly Hall</label></div>
-                    <div class="checkbox-item"><input type="checkbox" name="facilities" value="Art/Music Room" id="fac6"><label for="fac6">Art / Music Room</label></div>
-                    <div class="checkbox-item"><input type="checkbox" name="facilities" value="Cafeteria" id="fac7"><label for="fac7">Cafeteria</label></div>
-                    <div class="checkbox-item"><input type="checkbox" name="facilities" value="Sick Bay" id="fac8"><label for="fac8">Sick Bay</label></div>
-                    <div class="checkbox-item"><input type="checkbox" name="facilities" value="School Bus/Transport" id="fac9"><label for="fac9">School Bus / Transport</label></div>
+                <span class="q-label">Do you have existing web hosting?</span>
+                <div class="radio-group">
+                    <div class="radio-item"><input type="radio" name="hosting_status" value="Yes" id="host1" onchange="toggleConditional('hostDetails')"><label for="host1">Yes</label></div>
+                    <div class="radio-item"><input type="radio" name="hosting_status" value="No" id="host2" onchange="toggleConditional('hostDetails')"><label for="host2">No</label></div>
+                    <div class="radio-item"><input type="radio" name="hosting_status" value="Not sure" id="host3" onchange="toggleConditional('hostDetails')"><label for="host3">Not sure</label></div>
+                </div>
+                <div class="conditional-field" id="hostDetails">
+                    <label>Hosting provider:</label>
+                    <input type="text" name="hosting_provider" placeholder="e.g., Whogohost, Qservers, Bluehost, cPanel">
                 </div>
             </div>
 
             <div class="question-card">
-                <span class="q-label">List any achievements or awards the school is proud of (optional)</span>
-                <textarea name="achievements" placeholder="e.g., Best school in Karu LGA 2024, 100% WAEC pass rate, etc." rows="3"></textarea>
-            </div>
-        </div>
-
-        <!-- PAGE 5: CONTACT & ACCESS -->
-        <div class="page" data-page="5">
-            <h2 class="page-header">Contact & Access</h2>
-            <p class="page-sub">How can people reach the school?</p>
-
-            <div class="question-card">
-                <span class="q-label">School address (as it should appear on the website) <span class="required">*</span></span>
-                <textarea name="school_address" placeholder="Plot MF 31, ABG Hill, Behind Water Board, Karu" rows="3" required>Plot MF 31, ABG Hill, Behind Water Board, Karu</textarea>
-            </div>
-
-            <div class="question-card">
-                <span class="q-label">School phone number(s) <span class="required">*</span></span>
-                <input type="tel" name="school_phone" placeholder="+234 803 601 2387" value="+234 803 601 2387" required>
-            </div>
-
-            <div class="question-card">
-                <span class="q-label">School email address <span class="required">*</span></span>
-                <input type="email" name="school_email" placeholder="info@faithchristianschools.net" required>
-            </div>
-
-            <div class="question-card">
-                <span class="q-label">Do you have login details for the domain faithchristianschools.net? <span class="required">*</span></span>
+                <span class="q-label">Do you have existing school email addresses (e.g., info@faithchristianschools.net)?</span>
                 <div class="radio-group">
-                    <div class="radio-item"><input type="radio" name="domain_access" value="Yes - I have the login details" id="dom1" required><label for="dom1">Yes — I have the login details</label></div>
-                    <div class="radio-item"><input type="radio" name="domain_access" value="Someone else manages it" id="dom2"><label for="dom2">Someone else manages it</label></div>
-                    <div class="radio-item"><input type="radio" name="domain_access" value="Not sure" id="dom3"><label for="dom3">Not sure</label></div>
+                    <div class="radio-item"><input type="radio" name="email_setup" value="Yes — already configured" id="em1"><label for="em1">Yes — already configured</label></div>
+                    <div class="radio-item"><input type="radio" name="email_setup" value="No — need setup" id="em2"><label for="em2">No — we need email setup</label></div>
+                    <div class="radio-item"><input type="radio" name="email_setup" value="Using Gmail/Yahoo currently" id="em3"><label for="em3">Currently using Gmail / Yahoo</label></div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <span class="q-label">How do you prefer to share login credentials?</span>
+                <p class="q-hint">We need domain/hosting login to set up your website. Choose the method you're most comfortable with.</p>
+                <div class="radio-group">
+                    <div class="radio-item"><input type="radio" name="credentials_method" value="I will share via WhatsApp/call" id="cred1"><label for="cred1">I will share via WhatsApp / phone call</label></div>
+                    <div class="radio-item"><input type="radio" name="credentials_method" value="I will grant access from the dashboard" id="cred2"><label for="cred2">I will grant access from the dashboard directly</label></div>
+                    <div class="radio-item"><input type="radio" name="credentials_method" value="I need guidance" id="cred3"><label for="cred3">I need guidance on how to do this</label></div>
                 </div>
             </div>
         </div>
 
-        <!-- PAGE 6: CONTENT & LAUNCH -->
-        <div class="page" data-page="6">
-            <h2 class="page-header">Content & Launch</h2>
-            <p class="page-sub">Final details — almost done!</p>
-
-            <div class="question-card">
-                <span class="q-label">Who at the school will update the website after launch?</span>
-                <input type="text" name="website_updater" placeholder="Name and role — e.g., Mrs. Adama, Admin Officer">
-            </div>
-
-            <div class="question-card">
-                <span class="q-label">Will you provide the text content for each page, or should we draft it? <span class="required">*</span></span>
-                <div class="radio-group">
-                    <div class="radio-item"><input type="radio" name="content_source" value="We will write the content" id="cs1" required><label for="cs1">We will write the content</label></div>
-                    <div class="radio-item"><input type="radio" name="content_source" value="Kindly draft it - we will review" id="cs2"><label for="cs2">Kindly draft it — we will review</label></div>
-                    <div class="radio-item"><input type="radio" name="content_source" value="Mix of both" id="cs3"><label for="cs3">Mix of both</label></div>
-                </div>
-            </div>
+        <!-- ============================================================ -->
+        <!-- PAGE 8: TIMELINE, CONSENT & SUBMIT -->
+        <!-- ============================================================ -->
+        <div class="page" data-page="8">
+            <h2 class="page-header">Timeline & Final Details</h2>
+            <p class="page-sub">Almost done — just a few more details</p>
 
             <div class="question-card">
                 <span class="q-label">When do you need the website live? <span class="required">*</span></span>
@@ -639,28 +885,65 @@
                     <div class="radio-item"><input type="radio" name="timeline" value="Within 1 week" id="tl1" required><label for="tl1">Within 1 week</label></div>
                     <div class="radio-item"><input type="radio" name="timeline" value="Within 2 weeks" id="tl2"><label for="tl2">Within 2 weeks</label></div>
                     <div class="radio-item"><input type="radio" name="timeline" value="Within 1 month" id="tl3"><label for="tl3">Within 1 month</label></div>
-                    <div class="radio-item"><input type="radio" name="timeline" value="No rush" id="tl4"><label for="tl4">No rush — whenever it's ready</label></div>
+                    <div class="radio-item"><input type="radio" name="timeline" value="No rush — whenever it is ready" id="tl4"><label for="tl4">No rush — whenever it is ready</label></div>
                 </div>
             </div>
 
             <div class="question-card">
-                <span class="q-label">Upload any school photos, brochures, flyers, or documents you'd like on the website</span>
-                <div class="file-upload" onclick="document.getElementById('docsUpload').click()">
-                    <div class="upload-icon">📎</div>
-                    <div class="upload-text">Tap to upload files</div>
-                    <div class="upload-hint">PNG, JPG, PDF, DOC — You can always send more later</div>
-                    <input type="file" id="docsUpload" name="school_documents" multiple accept=".png,.jpg,.jpeg,.pdf,.doc,.docx">
+                <span class="q-label">Who at the school will be the primary contact for this project? <span class="required">*</span></span>
+                <input type="text" name="primary_contact" placeholder="Name and role — e.g., Mrs. Adama, Proprietress" required>
+            </div>
+
+            <div class="question-card">
+                <span class="q-label">Who will update the website after launch?</span>
+                <input type="text" name="website_updater" placeholder="Name and role — e.g., Mr. John, Admin Officer">
+            </div>
+
+            <div class="question-card">
+                <span class="q-label">Budget range for the website project</span>
+                <p class="q-hint">This helps us recommend the best solution for your school.</p>
+                <div class="radio-group">
+                    <div class="radio-item"><input type="radio" name="budget_range" value="Below ₦200,000" id="bud1"><label for="bud1">Below ₦200,000</label></div>
+                    <div class="radio-item"><input type="radio" name="budget_range" value="₦200,000 – ₦500,000" id="bud2"><label for="bud2">₦200,000 – ₦500,000</label></div>
+                    <div class="radio-item"><input type="radio" name="budget_range" value="₦500,000 – ₦1,000,000" id="bud3"><label for="bud3">₦500,000 – ₦1,000,000</label></div>
+                    <div class="radio-item"><input type="radio" name="budget_range" value="Above ₦1,000,000" id="bud4"><label for="bud4">Above ₦1,000,000</label></div>
+                    <div class="radio-item"><input type="radio" name="budget_range" value="Discuss during consultation" id="bud5"><label for="bud5">Prefer to discuss during consultation</label></div>
                 </div>
-                <div class="file-list" id="docsFileList"></div>
+            </div>
+
+            <div class="question-card">
+                <span class="q-label">Anything else you would like us to know?</span>
+                <textarea name="additional_notes" placeholder="Any special requests, concerns, or information that would help us serve you better..." rows="4"></textarea>
+            </div>
+
+            <hr class="section-divider">
+
+            <!-- NDPA CONSENT -->
+            <div class="consent-section">
+                <strong style="font-size:0.95rem; color:var(--primary); margin-bottom:8px; display:block;">Data Protection & Consent</strong>
+                <div class="consent-text">
+                    In compliance with the Nigeria Data Protection Act (NDPA) 2023, we collect the information in this form solely for the purpose of designing and building your school website. Your data will be handled with strict confidentiality, stored securely, and will not be shared with third parties without your consent. You may request access to, correction of, or deletion of your data at any time by contacting us at <strong>okosej@miraloyd.com</strong>.
+                </div>
+                <div class="consent-item">
+                    <input type="checkbox" id="consent_data" name="consent_data_processing" value="Yes — I consent" required>
+                    <label for="consent_data">I consent to Miraloyd Global Consult Ltd collecting and processing the information provided in this form for the purpose of designing our school website. <span style="color:var(--error);">*</span></label>
+                </div>
+                <div class="consent-item">
+                    <input type="checkbox" id="consent_contact" name="consent_contact" value="Yes — contact me">
+                    <label for="consent_contact">I agree to be contacted by Miraloyd Global Consult Ltd regarding this project via phone, email, or WhatsApp.</label>
+                </div>
             </div>
         </div>
 
+        <!-- ============================================================ -->
         <!-- SUCCESS PAGE -->
+        <!-- ============================================================ -->
         <div class="page" data-page="success">
             <div class="success-page">
                 <div class="check">✅</div>
                 <h2>Thank You!</h2>
-                <p>We have received your responses and will begin working on your website design. We will be in touch shortly.</p>
+                <p>We have received your responses and will begin working on your school website. Our team will be in touch within 24–48 hours to discuss next steps.</p>
+                <p style="margin-top:16px; font-size:0.85rem;"><strong>Miraloyd Global Consult Ltd</strong><br>okosej@miraloyd.com | +234 816 327 9498</p>
             </div>
         </div>
 
@@ -683,13 +966,14 @@
 
 <script>
     let currentPage = 1;
-    const totalPages = 6;
-    const STORAGE_KEY = 'fcs_requirements_form';
+    const totalPages = 8;
+    const STORAGE_KEY = 'fcs_requirements_form_v2';
 
     // Initialize
     document.addEventListener('DOMContentLoaded', () => {
         loadSavedData();
         updateNav();
+        initFileUploads();
     });
 
     // Navigation
@@ -728,7 +1012,12 @@
                 const checked = page.querySelector(`input[name="${name}"]:checked`);
                 if (!checked) {
                     valid = false;
-                    highlightError(input.closest('.question-card'));
+                    highlightError(input.closest('.question-card') || input.closest('.consent-section'));
+                }
+            } else if (input.type === 'checkbox') {
+                if (!input.checked) {
+                    valid = false;
+                    highlightError(input.closest('.consent-section') || input.closest('.question-card'));
                 }
             } else if (!input.value.trim()) {
                 valid = false;
@@ -736,7 +1025,7 @@
             }
         });
 
-        // Check checkbox groups that are required (pages)
+        // Check checkbox groups that are required
         if (currentPage === 1) {
             const levels = page.querySelectorAll('input[name="school_levels"]:checked');
             if (levels.length === 0) {
@@ -757,6 +1046,7 @@
     }
 
     function highlightError(card) {
+        if (!card) return;
         card.style.borderColor = 'var(--error)';
         card.scrollIntoView({ behavior: 'smooth', block: 'center' });
         setTimeout(() => { card.style.borderColor = ''; }, 3000);
@@ -765,15 +1055,26 @@
     // Conditional Logic
     function toggleConditional(fieldId) {
         const field = document.getElementById(fieldId);
+        if (!field) return;
         let show = false;
 
         if (fieldId === 'waNumber') {
-            show = document.getElementById('wa1').checked;
+            const cb = document.getElementById('ft3');
+            show = cb && cb.checked;
         } else if (fieldId === 'videoUrl') {
             show = document.getElementById('pv1').checked;
+        } else if (fieldId === 'hostDetails') {
+            show = document.getElementById('host1').checked;
         }
 
         field.classList.toggle('show', show);
+    }
+
+    function showDomainDetails() {
+        const field = document.getElementById('domainDetails');
+        const dom1 = document.getElementById('dom1');
+        const dom2 = document.getElementById('dom2');
+        field.classList.toggle('show', dom1.checked || dom2.checked);
     }
 
     function toggleSocialURL(checkboxId, urlFieldId) {
@@ -782,14 +1083,24 @@
         field.classList.toggle('show', cb.checked);
     }
 
-    // File upload display
-    document.getElementById('logoUpload').addEventListener('change', function() {
-        showFileList(this, 'logoFileList');
-    });
+    // File upload displays
+    function initFileUploads() {
+        const fileInputs = [
+            { id: 'logoUpload', listId: 'logoFileList' },
+            { id: 'crestUpload', listId: 'crestFileList' },
+            { id: 'photosUpload', listId: 'photosFileList' },
+            { id: 'docsUpload', listId: 'docsFileList' }
+        ];
 
-    document.getElementById('docsUpload').addEventListener('change', function() {
-        showFileList(this, 'docsFileList');
-    });
+        fileInputs.forEach(({ id, listId }) => {
+            const el = document.getElementById(id);
+            if (el) {
+                el.addEventListener('change', function() {
+                    showFileList(this, listId);
+                });
+            }
+        });
+    }
 
     function showFileList(input, listId) {
         const list = document.getElementById(listId);
@@ -805,8 +1116,8 @@
         const form = document.getElementById('requirementsForm');
         const data = {};
 
-        // Text, email, tel, url inputs and textareas
-        form.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], input[type="url"], textarea').forEach(el => {
+        // Text, email, tel, url, number, date inputs and textareas
+        form.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], input[type="url"], input[type="number"], input[type="date"], textarea').forEach(el => {
             if (el.name) data[el.name] = el.value;
         });
 
@@ -841,7 +1152,7 @@
             Object.keys(data).forEach(key => {
                 if (key === 'checkboxes' || key === 'currentPage' || key.startsWith('radio_')) return;
                 const el = form.querySelector(`[name="${key}"]`);
-                if (el && (el.type === 'text' || el.type === 'email' || el.type === 'tel' || el.type === 'url' || el.tagName === 'TEXTAREA')) {
+                if (el && (el.type === 'text' || el.type === 'email' || el.type === 'tel' || el.type === 'url' || el.type === 'number' || el.type === 'date' || el.tagName === 'TEXTAREA')) {
                     el.value = data[key];
                 }
             });
@@ -850,7 +1161,7 @@
             Object.keys(data).forEach(key => {
                 if (!key.startsWith('radio_')) return;
                 const name = key.replace('radio_', '');
-                const radio = form.querySelector(`input[name="${name}"][value="${data[key]}"]`);
+                const radio = form.querySelector(`input[name="${name}"][value="${CSS.escape(data[key])}"]`);
                 if (radio) {
                     radio.checked = true;
                     radio.dispatchEvent(new Event('change'));
@@ -861,7 +1172,7 @@
             if (data.checkboxes) {
                 Object.keys(data.checkboxes).forEach(name => {
                     data.checkboxes[name].forEach(val => {
-                        const cb = form.querySelector(`input[name="${name}"][value="${val}"]`);
+                        const cb = form.querySelector(`input[name="${name}"][value="${CSS.escape(val)}"]`);
                         if (cb) {
                             cb.checked = true;
                             cb.dispatchEvent(new Event('change'));
@@ -915,7 +1226,7 @@
         const formData = new FormData(form);
 
         // Collect checkbox values as comma-separated
-        ['school_levels', 'pages', 'facilities', 'social_media'].forEach(name => {
+        ['school_levels', 'pages', 'facilities', 'social_media', 'features', 'curriculum'].forEach(name => {
             const checked = form.querySelectorAll(`input[name="${name}"]:checked`);
             const values = Array.from(checked).map(c => c.value).join(', ');
             formData.set(name, values);
@@ -943,7 +1254,7 @@
         .catch(err => {
             btn.disabled = false;
             btn.textContent = 'Submit';
-            alert('There was an issue submitting. Kindly try again or contact us on WhatsApp.');
+            alert('There was an issue submitting. Kindly try again or contact us on WhatsApp at +234 816 327 9498.');
         });
     }
 </script>
