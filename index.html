@@ -468,6 +468,10 @@
     <img src="logo-mgcl.png" alt="Miraloyd Global Consult Limited" class="header-logo">
     <h1>Faith Christian Schools — Website Requirements Questionnaire</h1>
     <p>Kindly complete this form so we can design and build your school website to the highest standard.<br>Takes about 15 minutes.</p>
+    <p style="margin-top: 12px; font-size: 0.9em; opacity: 0.9;">
+        <a href="FCS-WEBFORM-SAMPLE-GUIDE.pdf" target="_blank" download style="color: #c8a84e; text-decoration: underline; font-weight: 600;">📄 Download Sample Guide (PDF)</a>
+        — See a filled example to help you complete the form
+    </p>
     <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
     <div class="progress-text" id="progressText">Page 1 of 8</div>
 </div>
@@ -896,7 +900,12 @@
 
             <div class="question-card">
                 <span class="q-label">Who will update the website after launch?</span>
-                <input type="text" name="website_updater" placeholder="Name and role — e.g., Mr. John, Admin Officer">
+                <div class="radio-group">
+                    <div class="radio-item"><input type="radio" name="website_updater" value="We have someone in-house" id="upd1"><label for="upd1">We have someone in-house who will handle updates</label></div>
+                    <div class="radio-item"><input type="radio" name="website_updater" value="We need MGCL to manage updates" id="upd2"><label for="upd2">We would need Miraloyd to help with future updates</label></div>
+                    <div class="radio-item"><input type="radio" name="website_updater" value="Not sure yet" id="upd3"><label for="upd3">Not sure yet — we can discuss this later</label></div>
+                </div>
+                <input type="text" name="updater_name" id="updaterName" placeholder="Name and role — e.g., Mr. John, Admin Officer" style="margin-top:10px; display:none;">
             </div>
 
             <div class="question-card">
@@ -1188,6 +1197,20 @@
             badge.style.color = '';
         }, 2000);
     }
+
+    // Conditional: show updater name field when "in-house" is selected
+    document.querySelectorAll('[name="website_updater"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+            const nameField = document.getElementById('updaterName');
+            if (this.value === 'We have someone in-house') {
+                nameField.style.display = 'block';
+                nameField.placeholder = 'Kindly provide their name and role — e.g., Mr. John, Admin Officer';
+            } else {
+                nameField.style.display = 'none';
+                nameField.value = '';
+            }
+        });
+    });
 
     // Auto-save on input
     let saveTimeout;
