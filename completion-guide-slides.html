@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>FCS Completion Guide</title>
+<style>
+  @font-face { font-family:'Inter'; src:url('Inter-Regular.ttf') format('truetype'); font-weight:400; font-style:normal; }
+  @font-face { font-family:'Inter'; src:url('Inter-Medium.ttf') format('truetype'); font-weight:500; font-style:normal; }
+  @font-face { font-family:'Inter'; src:url('Inter-SemiBold.ttf') format('truetype'); font-weight:600; font-style:normal; }
+  @font-face { font-family:'Inter'; src:url('Inter-Bold.ttf') format('truetype'); font-weight:700; font-style:normal; }
+  @font-face { font-family:'Inter'; src:url('Inter-ExtraBold.ttf') format('truetype'); font-weight:800; font-style:normal; }
+  @page { size: 13.333in 7.5in; margin: 0; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { width:13.333in; font-family:'Inter',sans-serif; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .slide { width:13.333in; height:7.5in; page-break-after:always; page-break-inside:avoid; overflow:hidden; position:relative; background:#fff; }
+  .slide:last-child { page-break-after:auto; }
+
+  .cover { background:#1a3a5c; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; color:#fff; }
+  .cover h1 { font-size:48pt; font-weight:800; }
+  .cover .sub { font-size:36pt; font-weight:700; color:#c8a84e; margin-top:4px; }
+  .cover .line { width:120px; height:4px; background:#c8a84e; margin:24px auto; border-radius:2px; }
+  .cover .tag { font-size:20pt; font-weight:600; color:#e0e0e0; }
+  .cover .desc { font-size:15pt; color:#b0b8c4; margin-top:16px; line-height:1.5; max-width:10in; }
+  .cover .brand { font-size:14pt; color:#8899aa; margin-top:50px; font-weight:600; }
+  .cover .brand span { font-weight:400; color:#6a7a8a; }
+
+  .hdr { background:#1a3a5c; padding:14px 50px; display:flex; align-items:center; justify-content:space-between; height:60px; }
+  .hdr h2 { font-size:22pt; font-weight:700; color:#fff; }
+  .hdr .pg { font-size:15pt; font-weight:600; color:#c8a84e; }
+
+  .body { padding:24px 50px 16px; height:calc(7.5in - 60px - 24px); }
+  .ftr { position:absolute; bottom:0; left:0; right:0; padding:6px 50px; font-size:9pt; color:#a0aec0; display:flex; justify-content:space-between; border-top:1px solid #e2e8f0; }
+
+  .sec-title { font-size:16pt; font-weight:700; color:#1a3a5c; margin-bottom:4px; }
+  .sec-desc { font-size:11.5pt; color:#718096; margin-bottom:14px; }
+
+  .cols { display:flex; gap:30px; }
+  .col { flex:1; }
+
+  table { width:100%; border-collapse:collapse; margin-bottom:14px; font-size:11.5pt; }
+  th { background:#1a3a5c; color:#fff; padding:8px 12px; text-align:left; font-weight:600; font-size:11pt; }
+  td { padding:7px 12px; border-bottom:1px solid #e2e8f0; color:#2d3748; vertical-align:top; line-height:1.4; }
+  tr:nth-child(even) td { background:#f7fafc; }
+  .req-yes { color:#38a169; font-weight:600; }
+  .req-no { color:#a0aec0; }
+
+  .callout { border-left:4px solid #3182ce; background:#ebf8ff; padding:10px 14px; font-size:11.5pt; color:#2d3748; margin-bottom:12px; border-radius:0 6px 6px 0; }
+  .callout strong { color:#2b6cb0; }
+  .callout-gold { border-left-color:#c8a84e; background:#fffff0; }
+  .callout-gold strong { color:#1a3a5c; }
+  .callout-green { border-left-color:#38a169; background:#f0fff4; }
+  .callout-green strong { color:#276749; }
+
+  .tip { border-left:4px solid #c8a84e; background:#fffff0; padding:10px 14px; font-size:11pt; color:#4a5568; margin-top:10px; border-radius:0 6px 6px 0; }
+  .tip strong { color:#1a3a5c; }
+
+  .checklist { list-style:none; padding:0; margin-bottom:14px; }
+  .checklist li { padding:6px 12px; background:#f7fafc; border:1px solid #e2e8f0; border-radius:4px; margin-bottom:3px; font-size:12pt; color:#2d3748; padding-left:32px; position:relative; }
+  .checklist li::before { content:''; position:absolute; left:10px; top:10px; width:6px; height:12px; border:solid #3182ce; border-width:0 2px 2px 0; transform:rotate(45deg); }
+
+  .feature-table td:first-child { font-weight:600; color:#1a3a5c; white-space:nowrap; }
+
+  .note { font-size:10.5pt; color:#718096; font-style:italic; margin-top:8px; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="slide cover">
+  <h1>FCS Website Requirements</h1>
+  <div class="sub">Questionnaire</div>
+  <div class="line"></div>
+  <div class="tag">Step-by-Step Completion Guide</div>
+  <div class="desc">This guide walks you through each page of the website requirements form.<br>Follow the instructions to provide the information we need to build your school website.</div>
+  <div class="brand">Miraloyd Global Consult Ltd<br><span>www.miraloyd.com</span></div>
+</div>
+
+<!-- BEFORE YOU BEGIN -->
+<div class="slide">
+  <div class="hdr"><h2>Before You Begin</h2><div class="pg">Getting Started</div></div>
+  <div class="body">
+    <div class="cols">
+      <div class="col">
+        <div class="sec-title">What You Will Need</div>
+        <div class="sec-desc">Before starting the form, please have the following ready:</div>
+        <ul class="checklist">
+          <li>School logo (PNG, JPG, or SVG format -- high resolution preferred)</li>
+          <li>School crest / emblem if different from the logo</li>
+          <li>Official school colours (colour names or hex codes if known)</li>
+          <li>Campus photos -- buildings, classrooms, facilities, events, students</li>
+          <li>School documents -- prospectus, brochure, admission forms</li>
+          <li>Social media URLs -- Facebook, Instagram, YouTube, etc.</li>
+          <li>Domain login details -- if you already own a domain name</li>
+          <li>Primary contact person -- name and role at the school</li>
+        </ul>
+      </div>
+      <div class="col">
+        <div class="sec-title">How to Access the Form</div>
+        <div class="callout-gold callout" style="margin-top:8px; font-size:14pt;"><strong>Form URL:</strong> is.gd/Miraloyd_FCS</div>
+        <div class="sec-desc">Open this link on your phone or computer. The form works on all devices.</div>
+
+        <div class="sec-title" style="margin-top:20px;">Key Features</div>
+        <table>
+          <tr><th>Feature</th><th>Description</th></tr>
+          <tr><td><strong>Auto-Save</strong></td><td>Your progress is saved automatically. You can close and return later.</td></tr>
+          <tr><td><strong>8 Pages</strong></td><td>The form has 8 short pages. Takes about 15 minutes to complete.</td></tr>
+          <tr><td><strong>Filled Example</strong></td><td>A filled example PDF is available for download at the top of the form.</td></tr>
+          <tr><td><strong>File Uploads</strong></td><td>You can upload your logo, photos, and documents directly in the form.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="ftr"><span>Completion Guide -- Miraloyd Global Consult Ltd</span><span>www.miraloyd.com</span></div>
+</div>
+
+<!-- PAGE 1 -->
+<div class="slide">
+  <div class="hdr"><h2>Page 1 -- School Identity</h2><div class="pg">Page 1 of 8</div></div>
+  <div class="body">
+    <div class="sec-desc">This page captures the foundation of your school -- who you are as an institution.</div>
+    <table>
+      <tr><th style="width:25%;">Field</th><th>What to Enter</th><th style="width:10%;">Required?</th></tr>
+      <tr><td><strong>Official school name</strong></td><td>Your school's full registered name (pre-filled as "Faith Christian Schools, Karu")</td><td class="req-yes">Yes</td></tr>
+      <tr><td><strong>School levels offered</strong></td><td>Tick all levels your school currently runs (Creche through Senior Secondary)</td><td class="req-yes">Yes</td></tr>
+      <tr><td><strong>School motto</strong></td><td>Your school's official motto or tagline</td><td class="req-yes">Yes</td></tr>
+      <tr><td><strong>Year established</strong></td><td>The year the school was founded</td><td class="req-no">No</td></tr>
+      <tr><td><strong>What makes your school unique?</strong></td><td>Write 2-3 sentences about what sets your school apart from others</td><td class="req-yes">Yes</td></tr>
+      <tr><td><strong>Curriculum and examinations</strong></td><td>Tick all curricula and exam bodies your school follows (NERDC, Cambridge, WAEC, etc.)</td><td class="req-no">No</td></tr>
+      <tr><td><strong>Accreditations</strong></td><td>List any regulatory approvals -- e.g., FCT Education Board, WAEC Centre, APEN member</td><td class="req-no">No</td></tr>
+    </table>
+    <div class="tip"><strong>Tip:</strong> For the "unique" description, think about what you would tell a parent choosing between your school and another. Focus on your strengths -- academic results, values, facilities, or staff quality.</div>
+  </div>
+  <div class="ftr"><span>Completion Guide -- Miraloyd Global Consult Ltd</span><span>www.miraloyd.com</span></div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="slide">
+  <div class="hdr"><h2>Page 2 -- Branding and Visual Identity</h2><div class="pg">Page 2 of 8</div></div>
+  <div class="body">
+    <div class="sec-desc">This page helps us understand your school's look, feel, and visual identity.</div>
+    <table>
+      <tr><th style="width:22%;">Field</th><th>What to Enter</th><th style="width:10%;">Required?</th></tr>
+      <tr><td><strong>Upload school logo</strong></td><td>Tap to upload your logo file. PNG with transparent background is ideal. Max 5 MB.</td><td class="req-yes">Yes</td></tr>
+      <tr><td><strong>School crest / emblem</strong></td><td>If your crest is different from your logo, upload it here.</td><td class="req-no">No</td></tr>
+      <tr><td><strong>Official school colours</strong></td><td>Enter your school colours -- e.g., "Navy Blue, Gold, White" or hex codes like "#1a3a5c"</td><td class="req-yes">Yes</td></tr>
+      <tr><td><strong>Website feel</strong></td><td>Choose the overall tone: Professional and Academic, Warm and Welcoming, Faith-centred, Modern, or a Blend</td><td class="req-yes">Yes</td></tr>
+      <tr><td><strong>Admired websites</strong></td><td>Share 1-2 links to school websites you like -- so we can understand your taste</td><td class="req-no">No</td></tr>
+    </table>
+    <div class="tip"><strong>Tip:</strong> If you don't have a logo yet, simply skip the upload. We can design one for you or work with your school colours to create a professional look.</div>
+  </div>
+  <div class="ftr"><span>Completion Guide -- Miraloyd Global Consult Ltd</span><span>www.miraloyd.com</span></div>
+</div>
+
+<!-- PAGE 3 -->
+<div class="slide">
+  <div class="hdr"><h2>Page 3 -- Website Pages and Features</h2><div class="pg">Page 3 of 8</div></div>
+  <div class="body">
+    <div class="sec-desc">Choose which pages and special features your website should have.</div>
+    <div class="cols">
+      <div class="col">
+        <div class="sec-title">Website Pages (tick all that apply)</div>
+        <div class="sec-desc">We offer 20 page options. The most popular for schools are:</div>
+        <ul class="checklist">
+          <li>Home -- Your main landing page</li>
+          <li>About Us -- History, mission, vision, leadership</li>
+          <li>Academics -- Curriculum, programmes per level</li>
+          <li>Admissions -- How to apply, requirements, fees</li>
+          <li>Gallery -- Photos and videos of school life</li>
+          <li>News and Events -- Announcements and upcoming events</li>
+          <li>Contact Us -- Address, phone, email, map</li>
+        </ul>
+      </div>
+      <div class="col">
+        <div class="sec-title">Special Features (tick all that apply)</div>
+        <table class="feature-table">
+          <tr><th>Feature</th><th>What It Does</th></tr>
+          <tr><td>Contact / Inquiry Form</td><td>Parents can send a message directly from the website</td></tr>
+          <tr><td>Online Admissions</td><td>Parents can start the admission process online</td></tr>
+          <tr><td>WhatsApp Chat Button</td><td>A floating button that opens WhatsApp to your school number</td></tr>
+          <tr><td>Fee Payment Gateway</td><td>Parents can pay school fees online (Paystack/Flutterwave)</td></tr>
+          <tr><td>Parent / Student Portal</td><td>Secure login area for results, timetables, etc.</td></tr>
+          <tr><td>Result Checker</td><td>Students can check exam results by entering their ID</td></tr>
+        </table>
+        <div class="note">If you select "WhatsApp Chat Button," a field will appear asking for your WhatsApp phone number.</div>
+      </div>
+    </div>
+  </div>
+  <div class="ftr"><span>Completion Guide -- Miraloyd Global Consult Ltd</span><span>www.miraloyd.com</span></div>
+</div>
+
+<!-- PAGE 4 -->
+<div class="slide">
+  <div class="hdr"><h2>Page 4 -- Admissions and Academics</h2><div class="pg">Page 4 of 8</div></div>
+  <div class="body">
+    <div class="sec-desc">This page is about how parents enrol and what the school offers.</div>
+    <table>
+      <tr><th style="width:22%;">Field</th><th>What to Enter</th><th style="width:10%;">Required?</th></tr>
+      <tr><td><strong>Admission process</strong></td><td>Describe the steps a parent follows to enrol their child -- from enquiry to acceptance</td><td class="req-yes">Yes</td></tr>
+      <tr><td><strong>Fee / tuition display</strong></td><td>Should we show fees on the website? Choose: Full structure / Ranges only / No (contact school)</td><td class="req-yes">Yes</td></tr>
+      <tr><td><strong>Key facilities</strong></td><td>Tick the facilities your school has -- Science Lab, Library, Sports Field, Chapel, Transport, CCTV, Generator, Playground, etc.</td><td class="req-no">No</td></tr>
+      <tr><td><strong>Notable achievements</strong></td><td>Awards, exam results, competitions won -- anything that shows your school's excellence</td><td class="req-no">No</td></tr>
+    </table>
+    <div class="tip"><strong>Tip:</strong> For the admission process, write it as steps. Example: "(1) Fill application form, (2) Write entrance exam, (3) Interview with Head of School, (4) Pay acceptance fee. Applications open September to January."</div>
+  </div>
+  <div class="ftr"><span>Completion Guide -- Miraloyd Global Consult Ltd</span><span>www.miraloyd.com</span></div>
+</div>
+
+<!-- PAGE 5 -->
+<div class="slide">
+  <div class="hdr"><h2>Page 5 -- Content, Images and Brand Assets</h2><div class="pg">Page 5 of 8</div></div>
+  <div class="body">
+    <div class="sec-desc">The materials we need to build your website content.</div>
+    <table>
+      <tr><th style="width:22%;">Field</th><th>What to Enter</th><th style="width:10%;">Required?</th></tr>
+      <tr><td><strong>Campus / school photos</strong></td><td>Upload photos of buildings, classrooms, facilities, events, students in activity. Up to 10 files.</td><td class="req-no">No</td></tr>
+      <tr><td><strong>School documents</strong></td><td>Upload prospectus, brochure, handbook, admission forms. Up to 5 files.</td><td class="req-no">No</td></tr>
+      <tr><td><strong>Google Drive / Dropbox link</strong></td><td>If you have many files, paste a shared folder link here instead of uploading.</td><td class="req-no">No</td></tr>
+      <tr><td><strong>Promotional video</strong></td><td>Do you have a school video? Select Yes / No / Planning to create one. If Yes, enter the video URL.</td><td class="req-yes">Yes</td></tr>
+      <tr><td><strong>Content source</strong></td><td>Who will write the website text? Choose: "We will write" / "Kindly draft it" / "Mix of both"</td><td class="req-yes">Yes</td></tr>
+    </table>
+    <div class="callout-green callout"><strong>Important:</strong> High-quality photos make a huge difference! Send us your best photos -- buildings, happy students, classrooms in use, sports activities, graduation ceremonies. The more you share, the better the website will look.</div>
+  </div>
+  <div class="ftr"><span>Completion Guide -- Miraloyd Global Consult Ltd</span><span>www.miraloyd.com</span></div>
+</div>
+
+<!-- PAGE 6 -->
+<div class="slide">
+  <div class="hdr"><h2>Page 6 -- Social Media and Contact Information</h2><div class="pg">Page 6 of 8</div></div>
+  <div class="body">
+    <div class="sec-desc">How the world reaches your school.</div>
+    <table>
+      <tr><th style="width:22%;">Field</th><th>What to Enter</th><th style="width:10%;">Required?</th></tr>
+      <tr><td><strong>School address</strong></td><td>Full address as it should appear on the website (pre-filled -- please verify)</td><td class="req-yes">Yes</td></tr>
+      <tr><td><strong>School phone number(s)</strong></td><td>All contact lines -- office, admissions, WhatsApp. One per line.</td><td class="req-yes">Yes</td></tr>
+      <tr><td><strong>School email</strong></td><td>The official email address for website display (e.g., info@yourschool.ng)</td><td class="req-yes">Yes</td></tr>
+      <tr><td><strong>Social media</strong></td><td>Tick the platforms your school uses -- Facebook, Instagram, YouTube, Twitter/X, TikTok, LinkedIn</td><td class="req-no">No</td></tr>
+    </table>
+    <div class="note">When you tick a social media platform, a URL field will appear. Paste the full link to your school's profile -- e.g., https://facebook.com/yourschoolname</div>
+  </div>
+  <div class="ftr"><span>Completion Guide -- Miraloyd Global Consult Ltd</span><span>www.miraloyd.com</span></div>
+</div>
+
+<!-- PAGE 7 -->
+<div class="slide">
+  <div class="hdr"><h2>Page 7 -- Technical and Backend Access</h2><div class="pg">Page 7 of 8</div></div>
+  <div class="body">
+    <div class="sec-desc">Domain, hosting, and setup details. Don't worry if you're unsure -- we will guide you.</div>
+    <table>
+      <tr><th style="width:22%;">Field</th><th>What to Enter</th><th style="width:10%;">Required?</th></tr>
+      <tr><td><strong>Domain name</strong></td><td>Do you have a website address (e.g., faithchristianschools.ng)? Select your status.</td><td class="req-yes">Yes</td></tr>
+      <tr><td><strong>Web hosting</strong></td><td>Do you have existing hosting? Select Yes / No / Not sure.</td><td class="req-yes">Yes</td></tr>
+      <tr><td><strong>School email setup</strong></td><td>Do you have professional email (info@yourschool.ng)? Or still using Gmail/Yahoo?</td><td class="req-yes">Yes</td></tr>
+      <tr><td><strong>Credential sharing</strong></td><td>How would you prefer to share login details? WhatsApp, dashboard access, or need guidance.</td><td class="req-yes">Yes</td></tr>
+    </table>
+    <div class="tip"><strong>Tip:</strong> If you're not sure about domain or hosting, simply select "Not sure" -- our team will contact you to help sort this out. No technical knowledge is required.</div>
+    <div class="callout" style="margin-top:10px;"><strong>Security:</strong> Any login credentials you provide are handled with strict confidentiality per the Nigeria Data Protection Act (NDPA 2023). We will never share them with third parties.</div>
+  </div>
+  <div class="ftr"><span>Completion Guide -- Miraloyd Global Consult Ltd</span><span>www.miraloyd.com</span></div>
+</div>
+
+<!-- PAGE 8 -->
+<div class="slide">
+  <div class="hdr"><h2>Page 8 -- Timeline and Final Details</h2><div class="pg">Page 8 of 8</div></div>
+  <div class="body">
+    <div class="sec-desc">Almost done! Just a few final details and your consent.</div>
+    <div class="cols">
+      <div class="col">
+        <table>
+          <tr><th style="width:28%;">Field</th><th>What to Enter</th><th style="width:10%;">Required?</th></tr>
+          <tr><td><strong>Timeline</strong></td><td>When do you need the website live? Within 1 week / 2 weeks / 1 month / No rush</td><td class="req-yes">Yes</td></tr>
+          <tr><td><strong>Primary contact</strong></td><td>Name and role of the person we should contact about the website project</td><td class="req-yes">Yes</td></tr>
+          <tr><td><strong>Website updater</strong></td><td>Who will update the website after launch? In-house / Need Miraloyd / Not sure yet</td><td class="req-no">No</td></tr>
+          <tr><td><strong>Additional notes</strong></td><td>Anything else you'd like us to know -- special requests, preferences, concerns</td><td class="req-no">No</td></tr>
+        </table>
+      </div>
+      <div class="col">
+        <div class="sec-title">Data Protection and Consent</div>
+        <div class="callout" style="margin-top:8px; font-size:10.5pt;">Your data is protected under the Nigeria Data Protection Act (NDPA) 2023. You may request access, correction, or deletion at any time by emailing <strong>info@miraloyd.com</strong>.</div>
+        <div style="margin-top:10px; font-size:11pt; color:#2d3748;">Before submitting, you must tick two consent boxes:</div>
+        <div style="margin-top:6px; padding:8px 12px; background:#f7fafc; border:1px solid #e2e8f0; border-radius:4px; font-size:11pt; color:#2d3748; margin-bottom:4px;"><strong>1.</strong> Data processing consent (required) -- You consent to Miraloyd collecting and processing the information in this form.</div>
+        <div style="padding:8px 12px; background:#f7fafc; border:1px solid #e2e8f0; border-radius:4px; font-size:11pt; color:#2d3748;"><strong>2.</strong> Contact permission -- You agree to be contacted via phone, email, or WhatsApp regarding this project.</div>
+      </div>
+    </div>
+  </div>
+  <div class="ftr"><span>Completion Guide -- Miraloyd Global Consult Ltd</span><span>www.miraloyd.com</span></div>
+</div>
+
+<!-- AFTER YOU SUBMIT -->
+<div class="slide" style="display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; background:#fff;">
+  <div style="width:100px; height:100px; background:#48bb78; border-radius:20px; display:flex; align-items:center; justify-content:center; margin-bottom:24px; box-shadow:0 8px 24px rgba(72,187,120,0.3);">
+    <div style="width:24px; height:45px; border:solid #fff; border-width:0 7px 7px 0; transform:rotate(45deg); margin-top:-6px;"></div>
+  </div>
+  <h1 style="font-size:36pt; font-weight:800; color:#2d3748; margin-bottom:12px;">After You Submit</h1>
+  <p style="font-size:16pt; color:#718096; max-width:8in; line-height:1.6; margin-bottom:10px;">Once you click Submit, you will see a "Thank You" confirmation page.<br>Our team will receive your responses and will be in touch to discuss next steps.</p>
+  <div style="margin-top:30px; padding:16px 32px; background:#f7fafc; border-radius:8px; border:1px solid #e2e8f0;">
+    <div style="font-size:13pt; color:#718096; margin-bottom:4px;">Need help while filling the form?</div>
+    <div style="font-size:15pt; font-weight:700; color:#1a3a5c;">info@miraloyd.com | +234 (0) 911 598 4804</div>
+  </div>
+  <div style="margin-top:30px; font-size:14pt; font-weight:700; color:#2d3748;">Miraloyd Global Consult Ltd</div>
+  <div style="font-size:12pt; color:#718096; margin-top:4px;">www.miraloyd.com</div>
+  <div class="ftr"><span>Completion Guide -- Miraloyd Global Consult Ltd</span><span>www.miraloyd.com</span></div>
+</div>
+
+</body>
+</html>

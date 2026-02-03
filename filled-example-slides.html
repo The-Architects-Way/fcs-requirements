@@ -3,13 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <title>FCS Filled Example</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
+  @font-face { font-family:'Inter'; src:url('Inter-Regular.ttf') format('truetype'); font-weight:400; font-style:normal; }
+  @font-face { font-family:'Inter'; src:url('Inter-Medium.ttf') format('truetype'); font-weight:500; font-style:normal; }
+  @font-face { font-family:'Inter'; src:url('Inter-SemiBold.ttf') format('truetype'); font-weight:600; font-style:normal; }
+  @font-face { font-family:'Inter'; src:url('Inter-Bold.ttf') format('truetype'); font-weight:700; font-style:normal; }
+  @font-face { font-family:'Inter'; src:url('Inter-ExtraBold.ttf') format('truetype'); font-weight:800; font-style:normal; }
   @page { size: 13.333in 7.5in; margin: 0; }
   * { margin:0; padding:0; box-sizing:border-box; }
-  html,body { width:13.333in; font-family:'Inter','Segoe UI',Tahoma,Geneva,Verdana,sans-serif; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  html,body { width:13.333in; font-family:'Inter',sans-serif; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
   .slide { width:13.333in; height:7.5in; page-break-after:always; page-break-inside:avoid; overflow:hidden; position:relative; background:#fff; }
   .slide:last-child { page-break-after:auto; }
 
@@ -43,8 +45,9 @@
   .cb-group { margin-bottom:14px; }
   .cb-row { display:flex; align-items:center; gap:8px; padding:5px 12px; background:#f7fafc; border:1px solid #e2e8f0; border-radius:4px; margin-bottom:3px; font-size:12.5pt; color:#2d3748; }
   .cb-row.checked { background:#ebf8ff; border-color:#3182ce; }
-  .cb { width:18px; height:18px; border:2px solid #cbd5e0; border-radius:3px; display:inline-flex; align-items:center; justify-content:center; flex-shrink:0; }
-  .cb.on { background:#3182ce; border-color:#3182ce; color:#fff; font-size:12px; font-weight:700; }
+  .cb { width:18px; height:18px; border:2px solid #cbd5e0; border-radius:3px; display:inline-flex; align-items:center; justify-content:center; flex-shrink:0; position:relative; }
+  .cb.on { background:#3182ce; border-color:#3182ce; }
+  .cb.on::after { content:''; display:block; width:5px; height:10px; border:solid #fff; border-width:0 2.5px 2.5px 0; transform:rotate(45deg); margin-top:-2px; }
   .cb.off { background:#fff; }
 
   /* Radio */
@@ -120,13 +123,13 @@
       <div class="field-label">School levels currently offered <span class="req">*</span></div>
       <div class="cols">
         <div class="col">
-          <div class="cb-row checked"><span class="cb on">&#10003;</span> Creche / Daycare</div>
-          <div class="cb-row checked"><span class="cb on">&#10003;</span> Pre-Nursery &amp; Nursery</div>
-          <div class="cb-row checked"><span class="cb on">&#10003;</span> Primary (Basic 1–6)</div>
+          <div class="cb-row checked"><span class="cb on"></span> Creche / Daycare</div>
+          <div class="cb-row checked"><span class="cb on"></span> Pre-Nursery &amp; Nursery</div>
+          <div class="cb-row checked"><span class="cb on"></span> Primary (Basic 1–6)</div>
         </div>
         <div class="col">
-          <div class="cb-row checked"><span class="cb on">&#10003;</span> Junior Secondary (JSS 1–3)</div>
-          <div class="cb-row checked"><span class="cb on">&#10003;</span> Senior Secondary (SSS 1–3)</div>
+          <div class="cb-row checked"><span class="cb on"></span> Junior Secondary (JSS 1–3)</div>
+          <div class="cb-row checked"><span class="cb on"></span> Senior Secondary (SSS 1–3)</div>
           <div class="cb-row"><span class="cb off"></span> Sixth Form / A-Levels / IB</div>
         </div>
       </div>
@@ -163,12 +166,12 @@
       <div class="field-label">Curriculum &amp; examinations offered</div>
       <div class="cols">
         <div class="col">
-          <div class="cb-row checked"><span class="cb on">&#10003;</span> Nigerian Curriculum (NERDC)</div>
+          <div class="cb-row checked"><span class="cb on"></span> Nigerian Curriculum (NERDC)</div>
           <div class="cb-row"><span class="cb off"></span> British Curriculum</div>
-          <div class="cb-row checked"><span class="cb on">&#10003;</span> WAEC / NECO</div>
+          <div class="cb-row checked"><span class="cb on"></span> WAEC / NECO</div>
         </div>
         <div class="col">
-          <div class="cb-row checked"><span class="cb on">&#10003;</span> Cambridge IGCSE / A-Levels</div>
+          <div class="cb-row checked"><span class="cb on"></span> Cambridge IGCSE / A-Levels</div>
           <div class="cb-row"><span class="cb off"></span> International Baccalaureate (IB)</div>
           <div class="cb-row"><span class="cb off"></span> Montessori (Early Years)</div>
         </div>
@@ -201,12 +204,12 @@
         <div class="field">
           <div class="field-label">Upload your school logo <span class="req">*</span></div>
           <div class="field-hint">High-resolution preferred. PNG with transparent background is ideal.</div>
-          <div class="upload-box"><div class="upload-icon">📁</div>Tap to upload school logo<br><span style="font-size:10pt;">PNG, JPG, SVG, or PDF — Max 5 MB</span></div>
+          <div class="upload-box"><div class="upload-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#a0aec0" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="12" y2="12"/><line x1="15" y1="15" x2="12" y2="12"/></svg></div>Tap to upload school logo<br><span style="font-size:10pt;">PNG, JPG, SVG, or PDF — Max 5 MB</span></div>
           <div class="field-hint">If you don't have a logo yet, kindly skip — we can design one or work with your school colours.</div>
         </div>
         <div class="field">
           <div class="field-label">School crest / emblem (if different from logo)</div>
-          <div class="upload-box"><div class="upload-icon">🛡️</div>Tap to upload crest or emblem<br><span style="font-size:10pt;">PNG, JPG, SVG, or PDF — Max 5 MB</span></div>
+          <div class="upload-box"><div class="upload-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#a0aec0" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>Tap to upload crest or emblem<br><span style="font-size:10pt;">PNG, JPG, SVG, or PDF — Max 5 MB</span></div>
         </div>
       </div>
       <div class="col">
@@ -246,22 +249,22 @@
       <div class="field-hint">Tick all that apply. We will advise on the best structure.</div>
       <div class="cols">
         <div class="col">
-          <div class="cb-row checked"><span class="cb on">&#10003;</span> Home</div>
-          <div class="cb-row checked"><span class="cb on">&#10003;</span> About Us (History, Mission, Vision, Leadership)</div>
-          <div class="cb-row checked"><span class="cb on">&#10003;</span> Academics (Curriculum, Programmes per Level)</div>
-          <div class="cb-row checked"><span class="cb on">&#10003;</span> Admissions (Requirements, Process, Fees)</div>
-          <div class="cb-row checked"><span class="cb on">&#10003;</span> Gallery (Photos &amp; Videos)</div>
-          <div class="cb-row checked"><span class="cb on">&#10003;</span> News &amp; Events</div>
-          <div class="cb-row checked"><span class="cb on">&#10003;</span> Staff Directory / Our Team</div>
+          <div class="cb-row checked"><span class="cb on"></span> Home</div>
+          <div class="cb-row checked"><span class="cb on"></span> About Us (History, Mission, Vision, Leadership)</div>
+          <div class="cb-row checked"><span class="cb on"></span> Academics (Curriculum, Programmes per Level)</div>
+          <div class="cb-row checked"><span class="cb on"></span> Admissions (Requirements, Process, Fees)</div>
+          <div class="cb-row checked"><span class="cb on"></span> Gallery (Photos &amp; Videos)</div>
+          <div class="cb-row checked"><span class="cb on"></span> News &amp; Events</div>
+          <div class="cb-row checked"><span class="cb on"></span> Staff Directory / Our Team</div>
           <div class="cb-row"><span class="cb off"></span> Student Life (Clubs, Sports, Activities)</div>
           <div class="cb-row"><span class="cb off"></span> Chapel / Spiritual Life</div>
-          <div class="cb-row checked"><span class="cb on">&#10003;</span> Facilities &amp; Campus Tour</div>
+          <div class="cb-row checked"><span class="cb on"></span> Facilities &amp; Campus Tour</div>
         </div>
         <div class="col">
-          <div class="cb-row checked"><span class="cb on">&#10003;</span> Testimonials / Parent Reviews</div>
-          <div class="cb-row checked"><span class="cb on">&#10003;</span> Downloads (Forms, Handbooks, Calendar)</div>
-          <div class="cb-row checked"><span class="cb on">&#10003;</span> School Calendar</div>
-          <div class="cb-row checked"><span class="cb on">&#10003;</span> Contact Us</div>
+          <div class="cb-row checked"><span class="cb on"></span> Testimonials / Parent Reviews</div>
+          <div class="cb-row checked"><span class="cb on"></span> Downloads (Forms, Handbooks, Calendar)</div>
+          <div class="cb-row checked"><span class="cb on"></span> School Calendar</div>
+          <div class="cb-row checked"><span class="cb on"></span> Contact Us</div>
           <div class="cb-row"><span class="cb off"></span> Blog</div>
           <div class="cb-row"><span class="cb off"></span> Alumni</div>
           <div class="cb-row"><span class="cb off"></span> Careers / Work With Us</div>
@@ -283,18 +286,18 @@
       <div class="field-label">Any special features or integrations needed?</div>
       <div class="cols">
         <div class="col">
-          <div class="cb-row checked"><span class="cb on">&#10003;</span> Contact / Inquiry Form</div>
-          <div class="cb-row checked"><span class="cb on">&#10003;</span> Online Admissions Application</div>
-          <div class="cb-row checked"><span class="cb on">&#10003;</span> WhatsApp Chat Button</div>
+          <div class="cb-row checked"><span class="cb on"></span> Contact / Inquiry Form</div>
+          <div class="cb-row checked"><span class="cb on"></span> Online Admissions Application</div>
+          <div class="cb-row checked"><span class="cb on"></span> WhatsApp Chat Button</div>
           <div class="cond-box">
             <div class="cond-label">WhatsApp number:</div>
             <div class="field-input">+234 803 601 2387</div>
           </div>
-          <div class="cb-row checked" style="margin-top:8px;"><span class="cb on">&#10003;</span> Fee Payment Gateway</div>
+          <div class="cb-row checked" style="margin-top:8px;"><span class="cb on"></span> Fee Payment Gateway</div>
         </div>
         <div class="col">
-          <div class="cb-row checked"><span class="cb on">&#10003;</span> Parent / Student Portal</div>
-          <div class="cb-row checked"><span class="cb on">&#10003;</span> Result Checker</div>
+          <div class="cb-row checked"><span class="cb on"></span> Parent / Student Portal</div>
+          <div class="cb-row checked"><span class="cb on"></span> Result Checker</div>
           <div class="cb-row"><span class="cb off"></span> E-Learning / CBT Integration</div>
           <div class="cb-row"><span class="cb off"></span> Newsletter / Email Signup</div>
           <div class="cb-row"><span class="cb off"></span> Live Chat</div>
@@ -335,20 +338,20 @@
         <div class="field">
           <div class="field-label">Key facilities</div>
           <div class="field-hint">Select what the school has — these will be featured on the website</div>
-          <div class="cb-row checked"><span class="cb on">&#10003;</span> Science Laboratory</div>
-          <div class="cb-row checked"><span class="cb on">&#10003;</span> Computer / ICT Room</div>
-          <div class="cb-row checked"><span class="cb on">&#10003;</span> Library</div>
-          <div class="cb-row checked"><span class="cb on">&#10003;</span> Sports Field / Court</div>
-          <div class="cb-row checked"><span class="cb on">&#10003;</span> Chapel / Assembly Hall</div>
+          <div class="cb-row checked"><span class="cb on"></span> Science Laboratory</div>
+          <div class="cb-row checked"><span class="cb on"></span> Computer / ICT Room</div>
+          <div class="cb-row checked"><span class="cb on"></span> Library</div>
+          <div class="cb-row checked"><span class="cb on"></span> Sports Field / Court</div>
+          <div class="cb-row checked"><span class="cb on"></span> Chapel / Assembly Hall</div>
           <div class="cb-row"><span class="cb off"></span> Art / Music Room</div>
           <div class="cb-row"><span class="cb off"></span> Cafeteria / Tuck Shop</div>
           <div class="cb-row"><span class="cb off"></span> Sick Bay / School Nurse</div>
-          <div class="cb-row checked"><span class="cb on">&#10003;</span> School Bus / Transport</div>
+          <div class="cb-row checked"><span class="cb on"></span> School Bus / Transport</div>
           <div class="cb-row"><span class="cb off"></span> Swimming Pool</div>
           <div class="cb-row"><span class="cb off"></span> Boarding House</div>
-          <div class="cb-row checked"><span class="cb on">&#10003;</span> CCTV / Security</div>
-          <div class="cb-row checked"><span class="cb on">&#10003;</span> Generator / Uninterrupted Power</div>
-          <div class="cb-row checked"><span class="cb on">&#10003;</span> Playground / Recreation Area</div>
+          <div class="cb-row checked"><span class="cb on"></span> CCTV / Security</div>
+          <div class="cb-row checked"><span class="cb on"></span> Generator / Uninterrupted Power</div>
+          <div class="cb-row checked"><span class="cb on"></span> Playground / Recreation Area</div>
         </div>
       </div>
     </div>
@@ -385,12 +388,12 @@
         <div class="field">
           <div class="field-label">Upload campus / school photos</div>
           <div class="field-hint">Buildings, classrooms, facilities, events, students in activity. High resolution preferred.</div>
-          <div class="upload-box"><div class="upload-icon">🏫</div>Tap to upload school photos<br><span style="font-size:10pt;">PNG, JPG — Up to 10 files, max 5 MB each</span></div>
+          <div class="upload-box"><div class="upload-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#a0aec0" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>Tap to upload school photos<br><span style="font-size:10pt;">PNG, JPG — Up to 10 files, max 5 MB each</span></div>
         </div>
         <div class="field">
           <div class="field-label">Upload school documents</div>
           <div class="field-hint">Prospectus, brochure, school handbook, admission form, letterhead</div>
-          <div class="upload-box"><div class="upload-icon">📄</div>Tap to upload documents<br><span style="font-size:10pt;">PDF, DOC, DOCX — Up to 5 files, max 5 MB each</span></div>
+          <div class="upload-box"><div class="upload-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#a0aec0" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>Tap to upload documents<br><span style="font-size:10pt;">PDF, DOC, DOCX — Up to 5 files, max 5 MB each</span></div>
         </div>
       </div>
       <div class="col">
@@ -445,12 +448,12 @@
       <div class="col">
         <div class="field">
           <div class="field-label">Which social media does the school use?</div>
-          <div class="cb-row checked"><span class="cb on">&#10003;</span> Facebook</div>
+          <div class="cb-row checked"><span class="cb on"></span> Facebook</div>
           <div class="cond-box">
             <div class="cond-label">Facebook URL:</div>
             <div class="field-input">https://facebook.com/harmonyacademyng</div>
           </div>
-          <div class="cb-row checked" style="margin-top:8px;"><span class="cb on">&#10003;</span> Instagram</div>
+          <div class="cb-row checked" style="margin-top:8px;"><span class="cb on"></span> Instagram</div>
           <div class="cond-box">
             <div class="cond-label">Instagram URL:</div>
             <div class="field-input">https://instagram.com/harmonyacademy_ng</div>
@@ -475,7 +478,7 @@
     <div class="sec-title">Technical &amp; Backend Access</div>
     <div class="sec-desc">Domain, hosting, and setup details</div>
 
-    <div class="callout callout-warn"><strong>🔒 Security Notice:</strong> Any login credentials you provide here are handled with strict confidentiality and used solely for the purpose of setting up your school website. We will never share your credentials with third parties. If you prefer, you can share access details directly via a secure channel (WhatsApp, phone call) instead of entering them here.</div>
+    <div class="callout callout-warn"><strong>Security Notice:</strong> Any login credentials you provide here are handled with strict confidentiality and used solely for the purpose of setting up your school website. We will never share your credentials with third parties. If you prefer, you can share access details directly via a secure channel (WhatsApp, phone call) instead of entering them here.</div>
 
     <div class="cols">
       <div class="col">
@@ -556,11 +559,11 @@
         <div class="field" style="margin-top:0;">
           <div class="sec-title" style="font-size:14pt;">Data Protection &amp; Consent</div>
           <div class="callout" style="margin-top:8px;">In compliance with the Nigeria Data Protection Act (NDPA) 2023, we collect the information in this form solely for the purpose of designing and building your school website. Your data will be handled with strict confidentiality, stored securely, and will not be shared with third parties without your consent. You may request access to, correction of, or deletion of your data at any time by contacting us at <strong>info@miraloyd.com</strong>.</div>
-          <div class="cb-row checked" style="margin-top:10px;"><span class="cb on">&#10003;</span> I consent to Miraloyd Global Consult Ltd collecting and processing the information provided in this form for the purpose of designing our school website. <span class="req">*</span></div>
-          <div class="cb-row checked" style="margin-top:4px;"><span class="cb on">&#10003;</span> I agree to be contacted by Miraloyd Global Consult Ltd regarding this project via phone, email, or WhatsApp.</div>
+          <div class="cb-row checked" style="margin-top:10px;"><span class="cb on"></span> I consent to Miraloyd Global Consult Ltd collecting and processing the information provided in this form for the purpose of designing our school website. <span class="req">*</span></div>
+          <div class="cb-row checked" style="margin-top:4px;"><span class="cb on"></span> I agree to be contacted by Miraloyd Global Consult Ltd regarding this project via phone, email, or WhatsApp.</div>
         </div>
         <div class="nav-btns" style="margin-top:20px;"><div class="btn-back">Back</div><div class="btn-submit">Submit</div></div>
-        <div class="autosave">&#10003; Progress saved</div>
+        <div class="autosave">Progress saved</div>
       </div>
     </div>
   </div>
@@ -570,7 +573,7 @@
 <!-- ===== SUCCESS PAGE: Thank You ===== -->
 <div class="slide" style="display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; background:#fff;">
   <div style="width:120px; height:120px; background:#48bb78; border-radius:20px; display:flex; align-items:center; justify-content:center; margin-bottom:32px; box-shadow:0 8px 24px rgba(72,187,120,0.3);">
-    <span style="font-size:64px; color:#fff; font-weight:700;">&#10003;</span>
+    <div style="width:30px; height:55px; border:solid #fff; border-width:0 8px 8px 0; transform:rotate(45deg); margin-top:-8px;"></div>
   </div>
   <h1 style="font-size:42pt; font-weight:800; color:#2d3748; margin-bottom:16px;">Thank You!</h1>
   <p style="font-size:18pt; color:#718096; max-width:8in; line-height:1.6; margin-bottom:40px;">We have received your responses and will begin working on your school website. Our team will be in touch shortly to discuss next steps.</p>
