@@ -1208,7 +1208,7 @@
             try {
                 const url = await uploadToCloudinary(file);
                 uploadedFiles[hiddenId].push({ url, filename: file.name });
-                document.getElementById(hiddenId).value = uploadedFiles[hiddenId].map(f => f.filename + ': ' + f.url).join('\n');
+                document.getElementById(hiddenId).value = uploadedFiles[hiddenId].map(f => f.url).join('\n');
 
                 const item = document.getElementById(itemId);
                 if (item) {
