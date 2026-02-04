@@ -468,6 +468,56 @@
             .question-card { padding: 16px; }
             .btn { padding: 12px 20px; font-size: 0.95rem; }
         }
+
+        /* Miraloyd Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal-box {
+            background: #fff;
+            border-radius: var(--radius);
+            max-width: 420px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+            animation: modalIn 0.25s ease-out;
+        }
+        @keyframes modalIn {
+            from { opacity: 0; transform: translateY(-20px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .modal-header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: #fff;
+            padding: 16px 20px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .modal-header svg { flex-shrink: 0; }
+        .modal-body {
+            padding: 20px;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--text);
+        }
+        .modal-footer {
+            padding: 12px 20px 16px;
+            text-align: right;
+        }
+        .modal-footer .btn {
+            min-width: 100px;
+        }
     </style>
 </head>
 <body>
@@ -565,19 +615,19 @@
                 <p class="q-hint">High-resolution preferred. PNG with transparent background is ideal.</p>
                 <div class="file-upload" onclick="document.getElementById('logoUpload').click()">
                     <div class="upload-icon">🏫</div>
-                    <div class="upload-text">Tap to upload school logo</div>
+                    <div class="upload-text">Tap to select school logo</div>
                     <div class="upload-hint">PNG, JPG, SVG, or PDF — Max 5 MB</div>
                     <input type="file" id="logoUpload" name="school_logo" accept=".png,.jpg,.jpeg,.svg,.pdf">
                 </div>
                 <div class="file-list" id="logoFileList"></div>
-                <p class="placeholder-hint">If you don't have a logo yet, kindly skip — we can design one or work with your school colours.</p>
+                <p class="placeholder-hint">If you don't have a logo yet, kindly skip — we can design one or work with your school colours.<br><em style="color:var(--text-light); font-size:0.8rem;">For best results, also share your files via the Google Drive / Dropbox link option on Page 6.</em></p>
             </div>
 
             <div class="question-card">
                 <span class="q-label">School crest / emblem (if different from logo)</span>
                 <div class="file-upload" onclick="document.getElementById('crestUpload').click()">
                     <div class="upload-icon">🛡️</div>
-                    <div class="upload-text">Tap to upload crest or emblem</div>
+                    <div class="upload-text">Tap to select crest or emblem</div>
                     <div class="upload-hint">PNG, JPG, SVG, or PDF — Max 5 MB</div>
                     <input type="file" id="crestUpload" name="school_crest" accept=".png,.jpg,.jpeg,.svg,.pdf">
                 </div>
@@ -730,7 +780,7 @@
                 <p class="q-hint">Buildings, classrooms, facilities, events, students in activity. High-resolution preferred.</p>
                 <div class="file-upload" onclick="document.getElementById('photosUpload').click()">
                     <div class="upload-icon">📸</div>
-                    <div class="upload-text">Tap to upload school photos</div>
+                    <div class="upload-text">Tap to select school photos</div>
                     <div class="upload-hint">PNG, JPG — Up to 10 files, max 5 MB each</div>
                     <input type="file" id="photosUpload" name="school_photos" multiple accept=".png,.jpg,.jpeg">
                 </div>
@@ -742,17 +792,18 @@
                 <p class="q-hint">Prospectus, brochure, school handbook, admission form, letterhead — anything that helps us understand your brand.</p>
                 <div class="file-upload" onclick="document.getElementById('docsUpload').click()">
                     <div class="upload-icon">📋</div>
-                    <div class="upload-text">Tap to upload documents</div>
+                    <div class="upload-text">Tap to select documents</div>
                     <div class="upload-hint">PDF, DOC, DOCX — Up to 5 files, max 5 MB each</div>
                     <input type="file" id="docsUpload" name="school_documents" multiple accept=".pdf,.doc,.docx">
                 </div>
                 <div class="file-list" id="docsFileList"></div>
             </div>
 
-            <div class="question-card">
-                <span class="q-label">Do you have a large number of files to share? Paste a Google Drive, Dropbox, or WeTransfer link below</span>
-                <p class="q-hint">This is ideal for sharing many photos, videos, or large files beyond the upload limit above.</p>
+            <div class="question-card" style="border-left: 3px solid var(--accent); background: var(--warn-bg);">
+                <span class="q-label">Share your files via Google Drive, Dropbox, or WeTransfer link</span>
+                <p class="q-hint">This is the recommended way to share your logo, photos, documents, and videos with us. Upload your files to a cloud folder and paste the sharing link below.</p>
                 <input type="url" name="shared_drive_link" placeholder="https://drive.google.com/drive/folders/...">
+                <p class="q-hint" style="margin-top:6px; font-size:0.78rem; color:var(--text-light);">Tip: In Google Drive, right-click your folder → Share → Copy link. Make sure "Anyone with the link" can view.</p>
             </div>
 
             <div class="question-card">
@@ -1294,6 +1345,21 @@
         saveTimeout = setTimeout(saveData, 500);
     });
 
+    // Miraloyd Modal
+    function showMiraloydModal(message, type) {
+        const overlay = document.getElementById('miraloydModal');
+        const icon = type === 'error'
+            ? '<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#fff" stroke-width="2"/><path d="M10 6v5M10 13.5v.5" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>'
+            : '<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#fff" stroke-width="2"/><path d="M6.5 10l2.5 2.5L13.5 7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+        document.getElementById('modalIcon').innerHTML = icon;
+        document.getElementById('modalMessage').innerHTML = message;
+        overlay.classList.add('active');
+    }
+
+    function closeMiraloydModal() {
+        document.getElementById('miraloydModal').classList.remove('active');
+    }
+
     // Submit
     function submitForm() {
         if (!validateCurrentPage()) return;
@@ -1321,6 +1387,17 @@
             formData.append(key, value);
         }
 
+        // Strip file inputs — Web3Forms free plan does not support attachments.
+        // Instead, capture selected file names as text fields for the submission.
+        ['school_logo', 'school_crest', 'school_photos', 'school_documents'].forEach(name => {
+            const fileInput = form.querySelector(`input[name="${name}"]`);
+            formData.delete(name);
+            if (fileInput && fileInput.files.length > 0) {
+                const names = Array.from(fileInput.files).map(f => `${f.name} (${(f.size/1024).toFixed(0)} KB)`).join(', ');
+                formData.set(name + '_listed', names);
+            }
+        });
+
         // Collect checkbox values as comma-separated
         ['school_levels', 'pages', 'facilities', 'social_media', 'features', 'curriculum'].forEach(name => {
             const checked = form.querySelectorAll(`input[name="${name}"]:checked`);
@@ -1332,7 +1409,10 @@
             method: 'POST',
             body: formData
         })
-        .then(res => res.json())
+        .then(res => {
+            if (!res.ok) throw new Error('Network response was not ok');
+            return res.json();
+        })
         .then(data => {
             if (data.success) {
                 // Show success
@@ -1344,15 +1424,32 @@
                 document.getElementById('progressText').textContent = 'Complete!';
                 localStorage.removeItem(STORAGE_KEY);
             } else {
-                throw new Error('Submission failed');
+                throw new Error(data.message || 'Submission failed');
             }
         })
         .catch(err => {
             btn.disabled = false;
             btn.textContent = 'Submit';
-            alert('There was an issue submitting. Kindly try again or contact us on WhatsApp at +234 (0) 911 598 4804.');
+            showMiraloydModal(
+                'There was an issue submitting your form. Kindly try again or contact us on WhatsApp at <strong>+234 (0) 911 598 4804</strong>.',
+                'error'
+            );
         });
     }
 </script>
+
+<!-- Miraloyd Modal -->
+<div class="modal-overlay" id="miraloydModal" onclick="if(event.target===this)closeMiraloydModal()">
+    <div class="modal-box">
+        <div class="modal-header">
+            <span id="modalIcon"></span>
+            Miraloyd
+        </div>
+        <div class="modal-body" id="modalMessage"></div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" onclick="closeMiraloydModal()">OK</button>
+        </div>
+    </div>
+</div>
 </body>
 </html>
