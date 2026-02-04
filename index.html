@@ -454,6 +454,14 @@
             margin-top: 40px;
         }
 
+        .file-item.uploading { color: var(--primary); font-style: italic; }
+        .file-item.uploaded { color: var(--success); }
+        .file-item.upload-error { color: var(--error); }
+        .file-item .upload-status { margin-left: auto; font-size: 0.75rem; font-weight: 600; }
+        .upload-progress { width: 100%; height: 4px; background: var(--border); border-radius: 2px; margin-top: 4px; overflow: hidden; }
+        .upload-progress-fill { height: 100%; background: var(--success); border-radius: 2px; transition: width 0.3s; width: 0%; }
+        .file-upload.upload-active { border-color: var(--primary-light); background: #eef2f7; pointer-events: none; opacity: 0.7; }
+
         @media (max-width: 480px) {
             .header h1 { font-size: 1.2rem; }
             .container { padding: 14px; }
@@ -469,8 +477,7 @@
     <h1>Faith Christian Schools — Website Requirements Questionnaire</h1>
     <p>Kindly complete this form so we can design and build your school website to the highest standard.<br>Takes about 15 minutes.</p>
     <p style="margin-top: 12px; font-size: 0.9em; opacity: 0.9;">
-        <a href="FCS-WEBFORM-SAMPLE-GUIDE.pdf" target="_blank" download style="color: #c8a84e; text-decoration: underline; font-weight: 600;">📄 Download Sample Guide (PDF)</a>
-        — See a filled example to help you complete the form
+        <a href="FCS-WEBFORM-COMPLETION-GUIDE.pdf" target="_blank" download style="color: #c8a84e; text-decoration: underline; font-weight: 600;">📋 Download Completion Guide (PDF)</a> — <a href="FCS-WEBFORM-FILLED-EXAMPLE.pdf" target="_blank" download style="color: #8899aa; text-decoration: underline; font-weight: 500;">See filled example</a>
     </p>
     <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
     <div class="progress-text" id="progressText">Page 1 of 8</div>
@@ -482,6 +489,11 @@
         <input type="hidden" name="subject" value="FCS Website Requirements Questionnaire — New Submission">
         <input type="hidden" name="from_name" value="FCS Requirements Form (OVER 9000)">
         <input type="hidden" name="redirect" value="">
+        <!-- Cloudinary upload URL fields (injected by upload handler) -->
+        <input type="hidden" name="school_logo_url" id="school_logo_url" value="">
+        <input type="hidden" name="school_crest_url" id="school_crest_url" value="">
+        <input type="hidden" name="school_photos_urls" id="school_photos_urls" value="">
+        <input type="hidden" name="school_documents_urls" id="school_documents_urls" value="">
 
         <!-- ============================================================ -->
         <!-- PAGE 1: SCHOOL IDENTITY -->
@@ -919,7 +931,7 @@
             <div class="consent-section">
                 <strong style="font-size:0.95rem; color:var(--primary); margin-bottom:8px; display:block;">Data Protection & Consent</strong>
                 <div class="consent-text">
-                    In compliance with the Nigeria Data Protection Act (NDPA) 2023, we collect the information in this form solely for the purpose of designing and building your school website. Your data will be handled with strict confidentiality, stored securely, and will not be shared with third parties without your consent. You may request access to, correction of, or deletion of your data at any time by contacting us at <strong>okosej@miraloyd.com</strong>.
+                    In compliance with the Nigeria Data Protection Act (NDPA) 2023, we collect the information in this form solely for the purpose of designing and building your school website. Your data will be handled with strict confidentiality, stored securely, and will not be shared with third parties without your consent. You may request access to, correction of, or deletion of your data at any time by contacting us at <strong>info@miraloyd.com</strong>.
                 </div>
                 <div class="consent-item">
                     <input type="checkbox" id="consent_data" name="consent_data_processing" value="Yes — I consent" required>
@@ -940,7 +952,7 @@
                 <div class="check">✅</div>
                 <h2>Thank You!</h2>
                 <p>We have received your responses and will begin working on your school website. Our team will be in touch shortly to discuss next steps.</p>
-                <p style="margin-top:16px; font-size:0.85rem;"><strong>Miraloyd Global Consult Ltd</strong><br>okosej@miraloyd.com | +234 (0) 911 598 4804</p>
+                <p style="margin-top:16px; font-size:0.85rem;"><strong>Miraloyd Global Consult Ltd</strong><br>info@miraloyd.com | +234 (0) 911 598 4804</p>
             </div>
         </div>
 
@@ -1080,32 +1092,91 @@
         field.classList.toggle('show', cb.checked);
     }
 
-    // File upload displays
+    // Cloudinary upload configuration
+    const CLOUDINARY_CLOUD = 'dgvktekep';
+    const CLOUDINARY_PRESET = 'fcs_form';
+    const CLOUDINARY_URL = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD}/auto/upload`;
+    const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB
+
+    // Track upload state: { fieldName: [{ url, filename }] }
+    const uploadedFiles = {};
+    let activeUploads = 0;
+
     function initFileUploads() {
         const fileInputs = [
-            { id: 'logoUpload', listId: 'logoFileList' },
-            { id: 'crestUpload', listId: 'crestFileList' },
-            { id: 'photosUpload', listId: 'photosFileList' },
-            { id: 'docsUpload', listId: 'docsFileList' }
+            { id: 'logoUpload', listId: 'logoFileList', hiddenId: 'school_logo_url', multi: false },
+            { id: 'crestUpload', listId: 'crestFileList', hiddenId: 'school_crest_url', multi: false },
+            { id: 'photosUpload', listId: 'photosFileList', hiddenId: 'school_photos_urls', multi: true },
+            { id: 'docsUpload', listId: 'docsFileList', hiddenId: 'school_documents_urls', multi: true }
         ];
 
-        fileInputs.forEach(({ id, listId }) => {
+        fileInputs.forEach(({ id, listId, hiddenId, multi }) => {
             const el = document.getElementById(id);
             if (el) {
                 el.addEventListener('change', function() {
-                    showFileList(this, listId);
+                    handleFileUpload(this, listId, hiddenId, multi);
                 });
             }
         });
     }
 
-    function showFileList(input, listId) {
+    async function uploadToCloudinary(file) {
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('upload_preset', CLOUDINARY_PRESET);
+
+        const response = await fetch(CLOUDINARY_URL, { method: 'POST', body: formData });
+        if (!response.ok) throw new Error(`Upload failed: ${response.status}`);
+        const data = await response.json();
+        return data.secure_url;
+    }
+
+    async function handleFileUpload(input, listId, hiddenId, multi) {
         const list = document.getElementById(listId);
+        const uploadArea = input.closest('.file-upload');
+        const files = Array.from(input.files);
+
+        if (!multi) uploadedFiles[hiddenId] = [];
+        if (!uploadedFiles[hiddenId]) uploadedFiles[hiddenId] = [];
+
         list.innerHTML = '';
-        Array.from(input.files).forEach(f => {
-            const size = (f.size / 1024).toFixed(0);
-            list.innerHTML += `<div class="file-item">📄 ${f.name} (${size} KB)</div>`;
-        });
+        uploadArea.classList.add('upload-active');
+
+        for (const file of files) {
+            const size = (file.size / 1024).toFixed(0);
+            const itemId = 'file_' + Math.random().toString(36).substr(2, 6);
+
+            if (file.size > MAX_FILE_SIZE) {
+                list.innerHTML += `<div class="file-item upload-error" id="${itemId}">📄 ${file.name} (${size} KB) <span class="upload-status">Too large — max 5 MB</span></div>`;
+                continue;
+            }
+
+            list.innerHTML += `<div class="file-item uploading" id="${itemId}">📄 ${file.name} (${size} KB) <span class="upload-status">Uploading...</span><div class="upload-progress"><div class="upload-progress-fill" style="width:30%"></div></div></div>`;
+
+            activeUploads++;
+            try {
+                const url = await uploadToCloudinary(file);
+                uploadedFiles[hiddenId].push({ url, filename: file.name });
+                document.getElementById(hiddenId).value = uploadedFiles[hiddenId].map(f => f.filename + ': ' + f.url).join('\n');
+
+                const item = document.getElementById(itemId);
+                if (item) {
+                    item.className = 'file-item uploaded';
+                    item.innerHTML = `✅ ${file.name} (${size} KB) <span class="upload-status">Uploaded</span>`;
+                }
+            } catch (err) {
+                const item = document.getElementById(itemId);
+                if (item) {
+                    item.className = 'file-item upload-error';
+                    item.innerHTML = `❌ ${file.name} (${size} KB) <span class="upload-status">Failed — tap to retry</span>`;
+                    item.style.cursor = 'pointer';
+                    item.onclick = () => { input.click(); };
+                }
+            }
+            activeUploads--;
+        }
+
+        uploadArea.classList.remove('upload-active');
     }
 
     // Auto-save
@@ -1226,6 +1297,12 @@
     // Submit
     function submitForm() {
         if (!validateCurrentPage()) return;
+
+        if (activeUploads > 0) {
+            alert('Files are still uploading. Kindly wait a moment and try again.');
+            return;
+        }
+
         saveData();
 
         const form = document.getElementById('requirementsForm');
@@ -1233,8 +1310,16 @@
         btn.disabled = true;
         btn.textContent = 'Submitting...';
 
-        // Collect all form data
-        const formData = new FormData(form);
+        // Build FormData WITHOUT file inputs (Web3Forms free tier ignores them)
+        // Cloudinary URLs are already in hidden inputs
+        const formData = new FormData();
+
+        // Copy all non-file fields
+        const allData = new FormData(form);
+        for (const [key, value] of allData.entries()) {
+            if (value instanceof File) continue; // Skip file inputs
+            formData.append(key, value);
+        }
 
         // Collect checkbox values as comma-separated
         ['school_levels', 'pages', 'facilities', 'social_media', 'features', 'curriculum'].forEach(name => {
