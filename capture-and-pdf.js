@@ -98,7 +98,7 @@ const path = require('path');
     await page.screenshot({ path: path.join(ssDir, '05-page5-contact.png'), fullPage: false });
 
     await page.evaluate(() => {
-        document.querySelector('input[name="school_phone"]').value = '+234 803 601 2387';
+        document.querySelector('input[name="school_phone"]').value = '+234 XXX XXX XXXX';
         document.querySelector('input[name="school_email"]').value = 'test@faithchristianschools.net';
     });
     // Domain: Not sure

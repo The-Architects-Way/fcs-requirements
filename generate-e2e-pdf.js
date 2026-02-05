@@ -18,24 +18,24 @@ const TEST_DATA = {
   school_colours: 'Navy Blue and Gold',
   admission_process: 'Parents visit the school, collect a registration form, submit with required documents, and attend an entrance assessment.',
   school_address: 'Plot MF 31, ABG Hill, Behind Water Board, Karu',
-  school_phone: '+234 803 601 2387',
+  school_phone: '+234 XXX XXX XXXX',
   school_email: 'info@faithchristianschools.net',
   domain_details: 'faithchristianschools.net',
   primary_contact: 'Mrs. Lez, Proprietress',
   website_updater: 'School Admin Staff',
-  whatsapp_number: '+234 803 601 2387'
+  whatsapp_number: '+234 XXX XXX XXXX'
 };
 
 const PAGE_TITLES = [
-  '01 — School Identity',
-  '02 — Branding & Visual Identity',
-  '03 — Website Pages & Features',
-  '04 — Admissions & Academics',
-  '05 — Content, Images & Brand Assets',
-  '06 — Social Media & Contact Info',
-  '07 — Technical & Backend Access',
-  '08 — Timeline & Final Details',
-  '09 — Thank You (Submission Success)'
+  '01 – School Identity',
+  '02 – Branding & Visual Identity',
+  '03 – Website Pages & Features',
+  '04 – Admissions & Academics',
+  '05 – Content, Images & Brand Assets',
+  '06 – Social Media & Contact Info',
+  '07 – Technical & Backend Access',
+  '08 – Timeline & Final Details',
+  '09 – Thank You (Submission Success)'
 ];
 
 (async () => {
@@ -169,7 +169,7 @@ const PAGE_TITLES = [
   await page.screenshot({ path: path.join(SCREENSHOT_DIR, 'page-09.png'), fullPage: true });
   console.log('Captured: page-09.png (Thank You page)');
 
-  // Generate PDF — one screenshot per landscape page
+  // Generate PDF –one screenshot per landscape page
   const PDFDocument = require('pdfkit');
   const doc = new PDFDocument({ layout: 'landscape', size: 'A4', margin: 30 });
   const stream = fs.createWriteStream(PDF_PATH);
@@ -184,7 +184,7 @@ const PAGE_TITLES = [
 
     // Header
     doc.rect(0, 0, doc.page.width, 50).fill('#1a3a5c');
-    doc.fontSize(14).fillColor('#ffffff').text('FCS Website Requirements Questionnaire — E2E Test Report', 30, 15, { width: doc.page.width - 200 });
+    doc.fontSize(14).fillColor('#ffffff').text('FCS Website Requirements Questionnaire –E2E Test Report', 30, 15, { width: doc.page.width - 200 });
     doc.fontSize(10).text(PAGE_TITLES[i] || `Page ${i+1}`, doc.page.width - 200, 18, { width: 170, align: 'right' });
 
     // Image
@@ -193,7 +193,7 @@ const PAGE_TITLES = [
     doc.image(imgPath, 30, 60, { fit: [imgWidth, imgHeight], align: 'center', valign: 'center' });
 
     // Footer
-    doc.fontSize(8).fillColor('#666666').text('Miraloyd Global Consult Ltd — www.miraloyd.com', 30, doc.page.height - 25, { width: doc.page.width - 60, align: 'center' });
+    doc.fontSize(8).fillColor('#666666').text('Miraloyd Global Consult Ltd –www.miraloyd.com', 30, doc.page.height - 25, { width: doc.page.width - 60, align: 'center' });
   }
 
   doc.end();

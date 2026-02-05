@@ -1,5 +1,5 @@
 /**
- * FCS Webform — Sample Guide PDF Generator v2.0
+ * FCS Webform – Sample Guide PDF Generator v2.0
  * PowerPoint-style: viewport-cropped slides for legibility.
  * Each form page is captured in scrolled viewport chunks (not full-page).
  * Result: HD, legible, branded landscape A4 slides.
@@ -182,12 +182,12 @@ async function run() {
             const filename = `slide-${String(slideIndex).padStart(3, '0')}.png`;
             const filepath = path.join(OUTPUT_DIR, filename);
 
-            // Viewport screenshot (not full page) — this gives us the exact visible area
+            // Viewport screenshot (not full page) – this gives us the exact visible area
             await page.screenshot({ path: filepath, fullPage: false });
 
             slides.push({
                 file: filepath,
-                title: `${String(formPage + 1).padStart(2, '0')} — ${pageNames[formPage]}`,
+                title: `${String(formPage + 1).padStart(2, '0')} – ${pageNames[formPage]}`,
                 subtitle: chunkIdx === 0 ? '' : '(continued)'
             });
 
@@ -247,7 +247,7 @@ async function run() {
     // ---- TITLE PAGE ----
     doc.rect(0, 0, PW, PH).fill('#1a3a5c');
 
-    // MGCL logo placeholder — gold accent bar
+    // MGCL logo placeholder – gold accent bar
     doc.rect(PW/2 - 100, 100, 200, 4).fill('#c8a84e');
 
     doc.fontSize(32).fillColor('#ffffff').text('FCS Website Requirements', 0, 150, { align: 'center', width: PW });
@@ -283,7 +283,7 @@ async function run() {
         // Header bar
         doc.rect(0, 0, PW, HEADER_H).fill('#1a3a5c');
         doc.fontSize(11).fillColor('#ffffff').text(
-            `Sample Guide — ${slide.title} ${slide.subtitle}`,
+            `Sample Guide – ${slide.title} ${slide.subtitle}`,
             16, 12
         );
         doc.fontSize(9).fillColor('#c8a84e').text(
@@ -291,7 +291,7 @@ async function run() {
             PW - 120, 14
         );
 
-        // Screenshot image — fills the entire content area
+        // Screenshot image – fills the entire content area
         if (fs.existsSync(slide.file)) {
             doc.image(slide.file, IMG_MARGIN, IMG_TOP, {
                 fit: [IMG_WIDTH, IMG_HEIGHT],
@@ -303,7 +303,7 @@ async function run() {
         // Footer bar
         doc.rect(0, PH - FOOTER_H, PW, FOOTER_H).fill('#f0f0f0');
         doc.fontSize(7).fillColor('#888888').text(
-            'Sample Guide — Miraloyd Global Consult Ltd | www.miraloyd.com',
+            'Sample Guide – Miraloyd Global Consult Ltd | www.miraloyd.com',
             0, PH - 13,
             { align: 'center', width: PW }
         );
